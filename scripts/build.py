@@ -1,353 +1,128 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import argparse
-import base64
-import hashlib
-import html
-import json
+import argparse, base64, html, json
 from pathlib import Path
-from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_PLATES = {"quiet", "achi-talk", "zhoushu-talk", "together"}
-ALLOWED_KINDS = {"cover", "dialogue", "action", "landing"}
-ALLOWED_SPEAKERS = {"阿迟", "周叔", "旁白"}
-BANNED_PHRASES = {
-    "高敏感人格",
-    "回避型",
-    "原生家庭决定",
-    "真正爱你的人",
-    "你应该学会",
-    "建立边界感",
-    "情绪价值",
-}
+PLATES = {"quiet", "achi-talk", "zhoushu-talk", "together"}
+SPEAKERS = {"阿迟", "周叔", "旁白"}
+BANNED = ("高敏感人格", "回避型", "真正爱你的人", "你应该学会", "建立边界感", "情绪价值")
 
 
-def load_json(path: Path) -> dict[str, Any]:
+def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def visual_units(text: str) -> float:
-    return sum(0.55 if ord(char) < 128 else 1.0 for char in text.replace("\n", ""))
+def units(text: str) -> float:
+    return sum(.55 if ord(c) < 128 else 1 for c in text.replace("\n", ""))
 
 
-def wrap_text(text: str, max_units: float) -> list[str]:
+def wrap(text: str, limit: float) -> list[str]:
     if "\n" in text:
-        result: list[str] = []
-        for part in text.splitlines():
-            result.extend(wrap_text(part, max_units))
-        return result
-    punctuation = set("，。！？：；、）》】）’”」』…")
-    lines: list[str] = []
-    current = ""
-    units = 0.0
-    for char in text.strip():
-        weight = 0.55 if ord(char) < 128 else 1.0
-        if current and units + weight > max_units:
-            if char in punctuation:
-                current += char
-            lines.append(current)
-            current = ""
-            units = 0.0
-        current += char
-        units += weight
-    if current:
-        lines.append(current)
-    return lines or [""]
+        return [line for part in text.splitlines() for line in wrap(part, limit)]
+    result, line, width = [], "", 0.0
+    for c in text.strip():
+        w = .55 if ord(c) < 128 else 1
+        if line and width + w > limit:
+            result.append(line); line, width = "", 0.0
+        line += c; width += w
+    return result + ([line] if line else [])
 
 
-def validate_episode(episode: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
-    pages = episode.get("pages")
-    if not isinstance(pages, list) or len(pages) != 5:
-        return ["episode must contain exactly five pages"]
-    if pages[0].get("kind") != "cover":
-        errors.append("page 1 must be cover")
-    if pages[-1].get("kind") != "landing":
-        errors.append("page 5 must be landing")
-
-    important_lines = 0
-    all_text: list[str] = []
-    for index, page in enumerate(pages, 1):
-        kind = page.get("kind")
-        plate = page.get("plate")
-        if kind not in ALLOWED_KINDS:
-            errors.append(f"page {index}: unsupported kind {kind!r}")
-        if plate not in ALLOWED_PLATES:
-            errors.append(f"page {index}: unsupported plate {plate!r}")
-
-        if kind == "cover":
-            text = str(page.get("text", "")).strip()
-            all_text.append(text)
-            if not text:
-                errors.append("page 1: missing cover text")
-            if visual_units(text) > 30:
-                errors.append("page 1: cover is longer than 30 visual units")
-        elif kind in {"dialogue", "action"}:
-            lines = page.get("lines")
-            if not isinstance(lines, list) or not 1 <= len(lines) <= 2:
-                errors.append(f"page {index}: dialogue/action page needs one or two lines")
-                continue
-            page_units = 0.0
-            for line in lines:
-                speaker = line.get("speaker")
-                text = str(line.get("text", "")).strip()
-                all_text.append(text)
-                if speaker not in ALLOWED_SPEAKERS:
-                    errors.append(f"page {index}: unknown speaker {speaker!r}")
-                if not text:
-                    errors.append(f"page {index}: empty dialogue")
-                if visual_units(text) > 34:
-                    errors.append(f"page {index}: one text block is longer than 34 visual units")
-                page_units += visual_units(text)
-            if page_units > 58:
-                errors.append(f"page {index}: page copy is too dense")
-            if kind == "action":
-                important_lines += 1
-                if not any("？" in str(line.get("text", "")) or "吗" in str(line.get("text", "")) for line in lines):
-                    errors.append("page 4: action page must contain a concrete ask or sentence to say")
-        elif kind == "landing":
-            for key in ("story", "takeaway", "question"):
-                text = str(page.get(key, "")).strip()
-                all_text.append(text)
-                if not text:
-                    errors.append(f"page 5: missing {key}")
-            if visual_units(str(page.get("takeaway", ""))) > 28:
-                errors.append("page 5: takeaway is too long")
-
-    if important_lines != 1:
-        errors.append("episode must contain exactly one action page")
-    joined = "\n".join(all_text)
-    for phrase in sorted(BANNED_PHRASES):
-        if phrase in joined:
-            errors.append(f"copy contains banned abstract phrase: {phrase}")
-    return errors
+def validate(ep: dict) -> None:
+    pages = ep.get("pages", [])
+    errors = []
+    if len(pages) != 5: errors.append("必须正好五页")
+    if pages and pages[0].get("kind") != "cover": errors.append("第一页必须是 cover")
+    if pages and pages[-1].get("kind") != "landing": errors.append("第五页必须是 landing")
+    if sum(p.get("kind") == "action" for p in pages) != 1: errors.append("必须正好有一页 action")
+    all_copy = []
+    for n, page in enumerate(pages, 1):
+        if page.get("plate") not in PLATES: errors.append(f"第 {n} 页镜头不合法")
+        if page.get("kind") in {"dialogue", "action"}:
+            lines = page.get("lines", [])
+            if not 1 <= len(lines) <= 2: errors.append(f"第 {n} 页只能有 1–2 个文本块")
+            for item in lines:
+                text_value = str(item.get("text", "")).strip(); all_copy.append(text_value)
+                if item.get("speaker") not in SPEAKERS: errors.append(f"第 {n} 页人物名不合法")
+                if units(text_value) > 34: errors.append(f"第 {n} 页单段超过 34 个视觉字符")
+        else:
+            all_copy.extend(str(page.get(k, "")) for k in ("text", "story", "takeaway", "question"))
+    joined = "\n".join(all_copy)
+    errors.extend(f"出现空泛表达：{word}" for word in BANNED if word in joined)
+    if errors: raise ValueError("剧集校验失败：\n- " + "\n- ".join(errors))
 
 
-def prompt_for_plate(plate_id: str, visual: dict[str, Any]) -> str:
-    plate = visual["plates"][plate_id]
-    identities = [visual["identity"][character] for character in plate["characters"]]
-    return ". ".join(
-        [
-            visual["style"],
-            "Characters: " + "; ".join(identities),
-            "Composition: " + plate["direction"],
-            "Background: " + visual["background"],
-            "Hard exclusions: " + visual["global_negative"],
-        ]
-    ) + "."
+def svg_text(lines, x, y, size, color, font, weight=400, leading=1.25, anchor="start") -> str:
+    rows = [f'<text x="{x}" y="{y}" fill="{color}" font-size="{size}" font-family="{html.escape(font, quote=True)}" font-weight="{weight}" text-anchor="{anchor}">']
+    for i, line in enumerate(lines):
+        rows.append(f'<tspan x="{x}" dy="{0 if i == 0 else size * leading:.1f}">{html.escape(line)}</tspan>')
+    return "\n".join(rows + ["</text>"])
 
 
-def image_path_for(assets_dir: Path, plate_id: str) -> Path | None:
-    for suffix in (".png", ".jpg", ".jpeg", ".webp"):
-        path = assets_dir / f"{plate_id}{suffix}"
-        if path.is_file():
-            return path
+def find_art(plate: str) -> Path | None:
+    for ext in ("png", "jpg", "jpeg", "webp"):
+        path = ROOT / "assets" / "plates" / f"{plate}.{ext}"
+        if path.is_file(): return path
     return None
 
 
-def embedded_image(path: Path, x: int, y: int, width: int, height: int) -> str:
-    suffix = path.suffix.lower()
-    mime = {
-        ".png": "image/png",
-        ".jpg": "image/jpeg",
-        ".jpeg": "image/jpeg",
-        ".webp": "image/webp",
-    }[suffix]
-    encoded = base64.b64encode(path.read_bytes()).decode("ascii")
-    return (
-        f'<image href="data:{mime};base64,{encoded}" x="{x}" y="{y}" '
-        f'width="{width}" height="{height}" preserveAspectRatio="xMidYMid meet"/>'
-    )
+def art(path: Path | None, plate: str, x: int, y: int, w: int, h: int, theme: dict) -> str:
+    if path:
+        mime = {".png":"image/png",".jpg":"image/jpeg",".jpeg":"image/jpeg",".webp":"image/webp"}[path.suffix.lower()]
+        data = base64.b64encode(path.read_bytes()).decode()
+        return f'<image href="data:{mime};base64,{data}" x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid meet"/>'
+    pale, font = theme["colors"]["proof"], theme["font_family"]
+    return "\n".join([
+        f'<line x1="{x+80}" y1="{y+h//2}" x2="{x+w-80}" y2="{y+h//2}" stroke="{pale}" stroke-width="2" stroke-dasharray="9 13"/>',
+        svg_text([f"{plate} · 插画占位，不作为成品"], x+w//2, y+h//2-24, 22, pale, font, anchor="middle")
+    ])
 
 
-def text_element(
-    lines: Iterable[str],
-    x: int,
-    y: int,
-    size: int,
-    line_height: float,
-    color: str,
-    font_family: str,
-    weight: int = 400,
-    anchor: str = "start",
-) -> str:
-    fragments = [
-        f'<text x="{x}" y="{y}" fill="{html.escape(color)}" font-size="{size}" '
-        f'font-family="{html.escape(font_family, quote=True)}" font-weight="{weight}" text-anchor="{anchor}">'
-    ]
-    for index, line in enumerate(lines):
-        dy = 0 if index == 0 else size * line_height
-        fragments.append(f'<tspan x="{x}" dy="{dy:.1f}">{html.escape(line)}</tspan>')
-    fragments.append("</text>")
-    return "\n".join(fragments)
+def dots(page: int, colors: dict) -> str:
+    return "\n".join(f'<circle cx="{486+(i-1)*27}" cy="1370" r="{7 if i==page else 4}" fill="{colors["accent"] if i==page else colors["proof"]}"/>' for i in range(1, 6))
 
 
-def proof_placeholder(theme: dict[str, Any], plate: str, x: int, y: int, width: int, height: int) -> str:
-    font = theme["font_family"]
-    proof = theme["colors"]["proof"]
-    return "\n".join(
-        [
-            f'<line x1="{x + 80}" y1="{y + height // 2}" x2="{x + width - 80}" y2="{y + height // 2}" stroke="{proof}" stroke-width="2" stroke-dasharray="8 12"/>',
-            text_element([f"{plate} · 插画占位，不进入正式发布"], x + width // 2, y + height // 2 - 24, 22, 1.2, proof, font, 400, "middle"),
-        ]
-    )
-
-
-def art_fragment(theme: dict[str, Any], image: Path | None, plate: str, x: int, y: int, width: int, height: int) -> str:
-    return embedded_image(image, x, y, width, height) if image else proof_placeholder(theme, plate, x, y, width, height)
-
-
-def page_dots(page_number: int, theme: dict[str, Any]) -> str:
-    accent = theme["colors"]["accent"]
-    muted = theme["colors"]["proof"]
-    items = []
-    start_x = 486
-    for index in range(1, 6):
-        radius = 7 if index == page_number else 4
-        color = accent if index == page_number else muted
-        items.append(f'<circle cx="{start_x + (index - 1) * 27}" cy="1370" r="{radius}" fill="{color}"/>')
-    return "\n".join(items)
-
-
-def render_card(episode: dict[str, Any], page: dict[str, Any], page_number: int, theme: dict[str, Any], image: Path | None) -> str:
-    width = int(theme["canvas"]["width"])
-    height = int(theme["canvas"]["height"])
-    colors = theme["colors"]
-    font = theme["font_family"]
-    fragments = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
-        f'<rect width="{width}" height="{height}" fill="{colors["paper"]}"/>',
-        text_element(["坐一会儿再走"], 76, 70, 22, 1.0, colors["muted"], font, 500),
-        f'<line x1="76" y1="94" x2="154" y2="94" stroke="{colors["accent"]}" stroke-width="5" stroke-linecap="round"/>',
-    ]
-
+def render(ep: dict, page: dict, number: int, theme: dict) -> str:
+    c, font = theme["colors"], theme["font_family"]
+    out = ['<?xml version="1.0" encoding="UTF-8"?>', '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">', f'<rect width="1080" height="1440" fill="{c["paper"]}"/>', svg_text(["坐一会儿再走"], 76, 70, 22, c["muted"], font, 500), f'<line x1="76" y1="94" x2="154" y2="94" stroke="{c["accent"]}" stroke-width="5" stroke-linecap="round"/>']
+    image = find_art(page["plate"])
     kind = page["kind"]
     if kind == "cover":
-        title_lines = wrap_text(page["text"], 12)
-        fragments.append(text_element(title_lines, 76, 190, 72, 1.18, colors["ink"], font, 700))
-        fragments.append(art_fragment(theme, image, page["plate"], 54, 410, 972, 780))
-        fragments.append(text_element(["阿迟 × 周叔"], 76, 1280, 27, 1.0, colors["muted"], font, 500))
+        out += [svg_text(wrap(page["text"], 12), 76, 190, 72, c["ink"], font, 700, 1.18), art(image, page["plate"], 54, 410, 972, 780, theme), svg_text(["阿迟 × 周叔"], 76, 1280, 27, c["muted"], font, 500)]
     elif kind in {"dialogue", "action"}:
-        fragments.append(art_fragment(theme, image, page["plate"], 70, 115, 940, 690))
-        y = 880
-        for line in page["lines"]:
-            speaker = line["speaker"]
-            speaker_color = colors["achi"] if speaker == "阿迟" else colors["zhoushu"] if speaker == "周叔" else colors["muted"]
-            fragments.append(text_element([speaker], 78, y, 23, 1.0, speaker_color, font, 700))
-            fragments.append(f'<line x1="78" y1="{y + 20}" x2="130" y2="{y + 20}" stroke="{speaker_color}" stroke-width="4" stroke-linecap="round"/>')
-            copy_lines = wrap_text(line["text"], 18)
-            if kind == "action" and speaker == "阿迟":
-                fragments.append(f'<line x1="78" y1="{y + 54}" x2="78" y2="{y + 54 + len(copy_lines) * 66}" stroke="{colors["accent"]}" stroke-width="6" stroke-linecap="round"/>')
-                text_x = 112
-                weight = 700
-            else:
-                text_x = 78
-                weight = 500
-            fragments.append(text_element(copy_lines, text_x, y + 75, 49, 1.28, colors["ink"], font, weight))
-            y += 92 + len(copy_lines) * 63
-    elif kind == "landing":
-        fragments.append(art_fragment(theme, image, page["plate"], 95, 110, 890, 520))
-        story_lines = wrap_text(page["story"], 19)
-        fragments.append(text_element(story_lines, 78, 730, 40, 1.35, colors["muted"], font, 400))
-        takeaway_lines = wrap_text(page["takeaway"], 10)
-        fragments.append(text_element(takeaway_lines, 78, 980, 64, 1.22, colors["ink"], font, 700))
-        fragments.append(f'<line x1="78" y1="{980 + len(takeaway_lines) * 78 + 12}" x2="265" y2="{980 + len(takeaway_lines) * 78 + 12}" stroke="{colors["accent"]}" stroke-width="7" stroke-linecap="round"/>')
-        question_lines = wrap_text(page["question"], 21)
-        fragments.append(text_element(question_lines, 78, 1260, 31, 1.32, colors["muted"], font, 500))
-        fragments.append(text_element([episode.get("source", "")], 1004, 1374, 16, 1.0, colors["muted"], font, 400, "end"))
-
-    fragments.append(page_dots(page_number, theme))
-    fragments.append("</svg>")
-    return "\n".join(fragments) + "\n"
+        out.append(art(image, page["plate"], 70, 115, 940, 690, theme)); y = 880
+        for item in page["lines"]:
+            who = item["speaker"]; color = c["achi"] if who == "阿迟" else c["zhoushu"] if who == "周叔" else c["muted"]
+            copy = wrap(item["text"], 18); emphasize = kind == "action" and who == "阿迟"
+            out += [svg_text([who], 78, y, 23, color, font, 700), f'<line x1="78" y1="{y+20}" x2="130" y2="{y+20}" stroke="{color}" stroke-width="4" stroke-linecap="round"/>']
+            x = 112 if emphasize else 78
+            if emphasize: out.append(f'<line x1="78" y1="{y+54}" x2="78" y2="{y+54+len(copy)*66}" stroke="{c["accent"]}" stroke-width="6" stroke-linecap="round"/>')
+            out.append(svg_text(copy, x, y+75, 49, c["ink"], font, 700 if emphasize else 500, 1.28)); y += 92 + len(copy)*63
+    else:
+        out += [art(image, page["plate"], 95, 110, 890, 520, theme), svg_text(wrap(page["story"], 19), 78, 730, 40, c["muted"], font, 400, 1.35)]
+        take = wrap(page["takeaway"], 10)
+        out += [svg_text(take, 78, 980, 64, c["ink"], font, 700, 1.22), f'<line x1="78" y1="{992+len(take)*78}" x2="265" y2="{992+len(take)*78}" stroke="{c["accent"]}" stroke-width="7" stroke-linecap="round"/>', svg_text(wrap(page["question"], 21), 78, 1260, 31, c["muted"], font, 500, 1.32), svg_text([ep.get("source", "")], 1004, 1374, 16, c["muted"], font, 400, anchor="end")]
+    return "\n".join(out + [dots(number, c), "</svg>"]) + "\n"
 
 
-def build(episode_path: Path, out_dir: Path | None = None, assets_dir: Path | None = None) -> Path:
-    episode = load_json(episode_path)
-    errors = validate_episode(episode)
-    if errors:
-        raise ValueError("episode validation failed:\n" + "\n".join(f"- {error}" for error in errors))
-
-    visual = load_json(ROOT / "visual" / "plates.json")
-    theme = load_json(ROOT / "templates" / "theme.json")
-    episode_id = episode["episode_id"]
-    out_dir = out_dir or ROOT / "build" / episode_id
-    assets_dir = assets_dir or ROOT / "assets" / "plates"
-    cards_dir = out_dir / "cards"
-    cards_dir.mkdir(parents=True, exist_ok=True)
-
-    used_plates = list(dict.fromkeys(page["plate"] for page in episode["pages"]))
-    prompt_rows = []
-    for plate_id in used_plates:
-        prompt_rows.append(
-            {
-                "plate": plate_id,
-                "prompt": prompt_for_plate(plate_id, visual),
-                "aspect_ratio": visual["canvas"],
-                "reference_images": [
-                    "assets/references/achi.png",
-                    "assets/references/zhoushu.png",
-                    "assets/references/achi-zhoushu.png",
-                ],
-                "output_path": f"assets/plates/{plate_id}.png",
-                "reuse_policy": "generate once, then reuse across episodes",
-            }
-        )
-    with (out_dir / "prompts.jsonl").open("w", encoding="utf-8") as handle:
-        for row in prompt_rows:
-            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
-
-    manifest_pages = []
-    for number, page in enumerate(episode["pages"], 1):
-        image = image_path_for(assets_dir, page["plate"])
-        svg = render_card(episode, page, number, theme, image)
-        target = cards_dir / f"{episode_id}-{number:02d}.svg"
-        target.write_text(svg, encoding="utf-8")
-        manifest_pages.append(
-            {
-                "page": number,
-                "kind": page["kind"],
-                "plate": page["plate"],
-                "has_art": image is not None,
-                "card": str(target.relative_to(out_dir)),
-                "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
-            }
-        )
-
-    (out_dir / "caption.txt").write_text(episode.get("caption", "").strip() + "\n", encoding="utf-8")
-    (out_dir / "manifest.json").write_text(
-        json.dumps(
-            {
-                "episode_id": episode_id,
-                "title": episode["title"],
-                "format": "five-card-fixed-plate-v1",
-                "pages": manifest_pages,
-            },
-            ensure_ascii=False,
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-    return out_dir
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Build a five-card fixed-character story episode.")
-    parser.add_argument("episode", type=Path)
-    parser.add_argument("--out", type=Path)
-    parser.add_argument("--assets", type=Path)
-    args = parser.parse_args()
-
-    episode_path = args.episode if args.episode.is_absolute() else ROOT / args.episode
-    out_dir = args.out if args.out is None or args.out.is_absolute() else ROOT / args.out
-    assets_dir = args.assets if args.assets is None or args.assets.is_absolute() else ROOT / args.assets
-    result = build(episode_path, out_dir, assets_dir)
-    print(f"Built {result.relative_to(ROOT) if result.is_relative_to(ROOT) else result}")
-    return 0
+def build(source: Path) -> Path:
+    ep, theme, visual = read_json(source), read_json(ROOT/"templates/theme.json"), read_json(ROOT/"visual/plates.json")
+    validate(ep); target = ROOT/"build"/ep["episode_id"]; cards = target/"cards"; cards.mkdir(parents=True, exist_ok=True)
+    used = dict.fromkeys(p["plate"] for p in ep["pages"])
+    with (target/"prompts.jsonl").open("w", encoding="utf-8") as f:
+        for plate in used:
+            spec = visual["plates"][plate]
+            prompt = ". ".join((visual["style"], "Characters: "+"; ".join(visual["identity"][x] for x in spec["characters"]), "Composition: "+spec["direction"], "Background: "+visual["background"], "Hard exclusions: "+visual["global_negative"])) + "."
+            f.write(json.dumps({"plate":plate,"prompt":prompt,"aspect_ratio":visual["canvas"],"references":["assets/references/achi.png","assets/references/zhoushu.png","assets/references/achi-zhoushu.png"],"output_path":f"assets/plates/{plate}.png","reuse":"generate once"}, ensure_ascii=False)+"\n")
+    for n, page in enumerate(ep["pages"], 1): (cards/f'{ep["episode_id"]}-{n:02d}.svg').write_text(render(ep, page, n, theme), encoding="utf-8")
+    (target/"caption.txt").write_text(ep.get("caption", "").strip()+"\n", encoding="utf-8")
+    (target/"manifest.json").write_text(json.dumps({"episode_id":ep["episode_id"],"format":"five-card-fixed-plate-v1","cards":5}, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    return target
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    parser = argparse.ArgumentParser(); parser.add_argument("episode", type=Path); args = parser.parse_args()
+    path = args.episode if args.episode.is_absolute() else ROOT/args.episode
+    print(f"Built {build(path).relative_to(ROOT)}")
