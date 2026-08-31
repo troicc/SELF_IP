@@ -2,10 +2,3 @@ __pycache__/
 *.py[cod]
 .DS_Store
 build/
-.coverage
-
-# Raw benchmark outputs are disposable. Assets copied into
-# assets/dialogue-sketch-v1/ by the finalizer are deliberately trackable.
-benchmarks/outputs/
-benchmarks/refinement-outputs/
-benchmarks/refinement-composed/
