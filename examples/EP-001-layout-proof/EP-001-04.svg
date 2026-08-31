@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
 <rect width="1080" height="1440" fill="#F8F2E8"/>
-<text x="76" y="70" fill="#77716B" font-size="22" font-family="&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="500" text-anchor="start"><tspan x="76" dy="0.0">坐一会儿再走</tspan></text>
+<text x="76" y="70" fill="#77736D" font-size="22" font-family="&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="500" text-anchor="start">
+<tspan x="76" dy="0.0">坐一会儿再走</tspan>
+</text>
 <line x1="76" y1="94" x2="154" y2="94" stroke="#D56E42" stroke-width="5" stroke-linecap="round"/>
-<line x1="150" y1="460" x2="930" y2="460" stroke="#D5CDC1" stroke-width="2" stroke-dasharray="8 12"/>
-<text x="540" y="436" fill="#D5CDC1" font-size="22" font-family="&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="400" text-anchor="middle"><tspan x="540" dy="0.0">zhoushu-talk · 插画占位，不作为成品</tspan></text>
-<text x="78" y="880" fill="#B4683C" font-size="23" font-family="&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="700" text-anchor="start"><tspan x="78" dy="0.0">周叔</tspan></text>
-<line x1="78" y1="900" x2="130" y2="900" stroke="#B4683C" stroke-width="4" stroke-linecap="round"/>
-<text x="78" y="955" fill="#1E3550" font-size="49" font-family="&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="500" text-anchor="start"><tspan x="78" dy="0.0">别问友情真假，只把这件事说具体。</tspan></text>
-<text x="78" y="1035" fill="#35678F" font-size="23" font-family="&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="700" text-anchor="start"><tspan x="78" dy="0.0">阿迟</tspan></text>
+<line x1="150" y1="460" x2="930" y2="460" stroke="#D8D0C5" stroke-width="2" stroke-dasharray="9 13"/>
+<text x="540" y="436" fill="#D8D0C5" font-size="22" font-family="&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="400" text-anchor="middle">
+<tspan x="540" dy="0.0">zhoushu-talk · 插画占位，不作为成品</tspan>
+</text>
+<text x="78" y="880" fill="#B66A3C" font-size="23" font-family="&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="700" text-anchor="start">
+<tspan x="78" dy="0.0">周叔</tspan>
+</text>
+<line x1="78" y1="900" x2="130" y2="900" stroke="#B66A3C" stroke-width="4" stroke-linecap="round"/>
+<text x="78" y="955" fill="#1E3550" font-size="49" font-family="&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="500" text-anchor="start">
+<tspan x="78" dy="0.0">那就别问友情真假，只说这件事。</tspan>
+</text>
+<text x="78" y="1035" fill="#35678F" font-size="23" font-family="&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="700" text-anchor="start">
+<tspan x="78" dy="0.0">阿迟</tspan>
+</text>
 <line x1="78" y1="1055" x2="130" y2="1055" stroke="#35678F" stroke-width="4" stroke-linecap="round"/>
 <line x1="78" y1="1089" x2="78" y2="1155" stroke="#D56E42" stroke-width="6" stroke-linecap="round"/>
-<text x="112" y="1110" fill="#1E3550" font-size="49" font-family="&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="700" text-anchor="start"><tspan x="112" dy="0.0">下次有变，能在我出门前告诉我吗？</tspan></text>
-<circle cx="486" cy="1370" r="4" fill="#D5CDC1"/><circle cx="513" cy="1370" r="4" fill="#D5CDC1"/><circle cx="540" cy="1370" r="4" fill="#D5CDC1"/><circle cx="567" cy="1370" r="7" fill="#D56E42"/><circle cx="594" cy="1370" r="4" fill="#D5CDC1"/>
+<text x="112" y="1110" fill="#1E3550" font-size="49" font-family="&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Noto Sans CJK SC&#x27;,&#x27;Source Han Sans SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif" font-weight="700" text-anchor="start">
+<tspan x="112" dy="0.0">下次有变，能在我出门前告诉我吗？</tspan>
+</text>
+<circle cx="486" cy="1370" r="4" fill="#D8D0C5"/>
+<circle cx="513" cy="1370" r="4" fill="#D8D0C5"/>
+<circle cx="540" cy="1370" r="4" fill="#D8D0C5"/>
+<circle cx="567" cy="1370" r="7" fill="#D56E42"/>
+<circle cx="594" cy="1370" r="4" fill="#D8D0C5"/>
 </svg>
