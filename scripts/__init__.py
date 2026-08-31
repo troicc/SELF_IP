@@ -1,1 +1,1 @@
-"""Simple SELF_IP build scripts."""
+"""Minimal SELF_IP build tools."""
