@@ -16,6 +16,10 @@ class BuildTests(unittest.TestCase):
         validate(episode)
         self.assertEqual(len(episode["pages"]), 5)
         self.assertEqual({page["plate"] for page in episode["pages"]} - PLATES, set())
+        self.assertEqual(
+            {page["plate"] for page in episode["pages"]},
+            {"quiet", "achi-talk", "zhoushu-talk", "together"},
+        )
 
     def test_build_has_clean_type_and_no_old_overlay(self) -> None:
         output = build(ROOT / "episodes" / "EP-001.json")
@@ -24,14 +28,22 @@ class BuildTests(unittest.TestCase):
         combined = "\n".join(card.read_text(encoding="utf-8") for card in cards)
         self.assertNotIn('fill-opacity="0.92"', combined)
         self.assertNotIn("01/07", combined)
+        self.assertNotIn("<foreignObject", combined)
         self.assertIn("体谅别人", combined)
+        self.assertIn("插画占位", combined)
         manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["format"], "five-card-fixed-plate-v1")
 
     def test_prompts_forbid_complex_scenes(self) -> None:
         output = build(ROOT / "episodes" / "EP-001.json")
         prompts = (output / "prompts.jsonl").read_text(encoding="utf-8")
-        for phrase in ("no furniture", "no full body", "no extra person", "no complex gesture"):
+        for phrase in (
+            "no furniture",
+            "no full body",
+            "no detailed hands",
+            "no extra person",
+            "no complex gesture",
+        ):
             self.assertIn(phrase, prompts)
 
     def test_copy_avoids_banned_abstractions(self) -> None:
