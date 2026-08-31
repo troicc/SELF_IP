@@ -6,7 +6,6 @@ import base64
 import html
 import json
 import math
-import random
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -35,11 +34,13 @@ def visual_units(value: str) -> float:
 
 
 def wrap_text(value: str, limit: float) -> list[str]:
+    """Keep authored line breaks, only wrapping a line if it cannot fit."""
     if "\n" in value:
         lines: list[str] = []
         for part in value.splitlines():
             lines.extend(wrap_text(part, limit))
         return lines
+
     closing = set("，。！？：；、）》】）’”」』…")
     lines: list[str] = []
     current = ""
@@ -61,18 +62,6 @@ def wrap_text(value: str, limit: float) -> list[str]:
     return lines or [""]
 
 
-def overlap_ratio(first: dict[str, float], second: dict[str, float]) -> float:
-    left = max(first["x"], second["x"])
-    top = max(first["y"], second["y"])
-    right = min(first["x"] + first["w"], second["x"] + second["w"])
-    bottom = min(first["y"] + first["max_h"], second["y"] + second["max_h"])
-    if right <= left or bottom <= top:
-        return 0.0
-    area = (right - left) * (bottom - top)
-    smaller = min(first["w"] * first["max_h"], second["w"] * second["max_h"])
-    return area / smaller if smaller else 0.0
-
-
 def validate_episode(episode: dict[str, Any], visual: dict[str, Any]) -> None:
     errors: list[str] = []
     pages = episode.get("pages", [])
@@ -86,8 +75,8 @@ def validate_episode(episode: dict[str, Any], visual: dict[str, Any]) -> None:
         errors.append("必须正好有一页 action")
 
     all_copy: list[str] = []
-    short_lines = 0
-    punctuation_shapes: set[str] = set()
+    short_bubbles = 0
+    question_count = 0
     for number, page in enumerate(pages, 1):
         kind = page.get("kind")
         plate_id = page.get("plate")
@@ -96,11 +85,11 @@ def validate_episode(episode: dict[str, Any], visual: dict[str, Any]) -> None:
         if plate_id not in PLATES:
             errors.append(f"第 {number} 页镜头不合法")
             continue
+
         plate = visual["plates"][plate_id]
         bubbles = page.get("bubbles", [])
-        if not 1 <= len(bubbles) <= 2:
-            errors.append(f"第 {number} 页必须有 1–2 个对话气泡")
-        used_slots: list[dict[str, float]] = []
+        if not 1 <= len(bubbles) <= 3:
+            errors.append(f"第 {number} 页必须有 1–3 个气泡")
         for bubble in bubbles:
             speaker = bubble.get("speaker")
             slot_name = bubble.get("slot")
@@ -110,50 +99,42 @@ def validate_episode(episode: dict[str, Any], visual: dict[str, Any]) -> None:
                 errors.append(f"第 {number} 页 speaker 不合法")
             if slot_name not in plate["slots"]:
                 errors.append(f"第 {number} 页气泡位 {slot_name!r} 不存在")
-                continue
-            slot = plate["slots"][slot_name]
-            used_slots.append(slot)
             if not value:
                 errors.append(f"第 {number} 页有空气泡")
-            if visual_units(value) > (42 if kind == "cover" else 38):
+            if visual_units(value) > (52 if kind == "cover" else 42):
                 errors.append(f"第 {number} 页单个气泡文字过长")
-            if visual_units(value) <= 8:
-                short_lines += 1
-            punctuation_shapes.add(value[-1:] if value else "")
-            mouth = plate["mouths"].get(speaker)
-            if mouth:
-                mx, my = mouth
-                if slot["x"] < mx < slot["x"] + slot["w"] and slot["y"] < my < slot["y"] + slot["max_h"]:
-                    errors.append(f"第 {number} 页 {speaker} 的气泡盖住嘴部锚点")
-                center_x = slot["x"] + slot["w"] / 2
-                center_y = slot["y"] + slot["max_h"] / 2
-                if math.dist((center_x, center_y), (mx, my)) > 770:
-                    errors.append(f"第 {number} 页 {speaker} 的气泡离嘴太远")
-        if len(used_slots) == 2 and overlap_ratio(used_slots[0], used_slots[1]) > 0.18:
-            errors.append(f"第 {number} 页两个气泡重叠过多")
-        if kind == "action" and not any("？" in bubble.get("text", "") or "吗" in bubble.get("text", "") for bubble in bubbles):
-            errors.append("action 页必须包含现实中能直接说出口的具体请求")
+            if any(visual_units(line) <= 5 for line in value.splitlines() if line.strip()):
+                short_bubbles += 1
+            if "？" in value or "吗" in value:
+                question_count += 1
+
+        if kind == "action" and not any(
+            phrase in "\n".join(str(bubble.get("text", "")) for bubble in bubbles)
+            for phrase in ("几点", "能不能", "可以吗", "我来", "我陪")
+        ):
+            errors.append("action 页必须给出一句现实中可执行的表达")
+
         if kind == "landing":
-            for key in ("caption", "note", "question"):
+            for key in ("note", "question"):
                 value = str(page.get(key, "")).strip()
                 all_copy.append(value)
                 if not value:
                     errors.append(f"结尾页缺少 {key}")
-            if visual_units(str(page.get("note", ""))) > 20:
-                errors.append("结尾小道理太长")
+            if visual_units(str(page.get("note", ""))) > 22:
+                errors.append("结尾动作说明太长")
 
     joined = "\n".join(all_copy)
     for phrase in BANNED:
         if phrase in joined:
             errors.append(f"出现空泛或机器腔表达：{phrase}")
-    if short_lines == 0:
-        errors.append("全篇缺少一句短回应，节奏过于整齐")
-    if len(punctuation_shapes - {""}) < 2:
-        errors.append("所有句子收尾过于一致")
-    if "……" not in joined and "——" not in joined:
-        errors.append("样稿缺少一次停顿或自我修正，口语节奏过平")
-    if not any(word in joined for word in ("面", "筷子", "手机", "门", "雨", "杯", "鞋", "包")):
-        errors.append("全篇缺少能落到画面里的具体物件")
+    if short_bubbles == 0:
+        errors.append("全篇缺少一句真正短的回应")
+    if question_count < 2:
+        errors.append("对话缺少自然追问")
+    if "……" not in joined:
+        errors.append("全篇缺少一次停顿或吞回去的话")
+    if not any(word in joined for word in ("摔", "邻居", "电话", "开会", "复诊", "视频")):
+        errors.append("故事缺少可见、可记的现实细节")
     if errors:
         raise ValueError("剧集校验失败：\n- " + "\n- ".join(errors))
 
@@ -173,7 +154,10 @@ def svg_text(
 ) -> str:
     stroke = ""
     if stroke_width > 0:
-        stroke = f' stroke="{color}" stroke-width="{stroke_width:.2f}" paint-order="stroke fill" stroke-linejoin="round"'
+        stroke = (
+            f' stroke="{html.escape(color)}" stroke-width="{stroke_width:.2f}" '
+            'paint-order="stroke fill" stroke-linejoin="round"'
+        )
     parts = [
         f'<text x="{x:.1f}" y="{y:.1f}" fill="{html.escape(color)}" font-size="{size:.1f}" '
         f'font-family="{html.escape(font, quote=True)}" font-weight="{weight}" text-anchor="{anchor}" '
@@ -202,274 +186,239 @@ def embedded_art(path: Path) -> str:
         ".webp": "image/webp",
     }[path.suffix.lower()]
     encoded = base64.b64encode(path.read_bytes()).decode("ascii")
-    return f'<image href="data:{mime};base64,{encoded}" x="0" y="0" width="1080" height="1440" preserveAspectRatio="xMidYMid slice"/>'
+    return (
+        f'<image href="data:{mime};base64,{encoded}" x="0" y="0" width="1080" height="1440" '
+        'preserveAspectRatio="xMidYMid slice"/>'
+    )
 
 
 def proof_art(plate: dict[str, Any], theme: dict[str, Any]) -> str:
     colors = theme["colors"]
-    font = theme["font"]["family"]
     a = plate["mouths"]["阿迟"]
     z = plate["mouths"]["周叔"]
     return "\n".join(
         [
-            f'<ellipse cx="{a[0]}" cy="1010" rx="190" ry="270" fill="{colors["sky"]}" opacity="0.48"/>',
-            f'<circle cx="{a[0]}" cy="780" r="98" fill="#F4C7A7" opacity="0.72"/>',
-            f'<path d="M {a[0]-115} 815 Q {a[0]} 690 {a[0]+115} 815" fill="none" stroke="{colors["sky_line"]}" stroke-width="9" opacity="0.55"/>',
-            f'<ellipse cx="{z[0]}" cy="1010" rx="205" ry="275" fill="{colors["butter"]}" opacity="0.52"/>',
-            f'<circle cx="{z[0]}" cy="780" r="102" fill="#E8B997" opacity="0.72"/>',
-            f'<path d="M {z[0]-120} 815 Q {z[0]} 690 {z[0]+120} 815" fill="none" stroke="{colors["butter_line"]}" stroke-width="9" opacity="0.55"/>',
-            svg_text(["阿迟"], a[0], 1115, 28, colors["sky_line"], font, 600, 1.0, anchor="middle"),
-            svg_text(["周叔"], z[0], 1115, 28, colors["butter_line"], font, 600, 1.0, anchor="middle"),
+            f'<ellipse cx="{a[0]}" cy="1045" rx="185" ry="260" fill="{colors["sky"]}" opacity="0.38"/>',
+            f'<circle cx="{a[0]}" cy="820" r="94" fill="#F1C5A7" opacity="0.68"/>',
+            f'<ellipse cx="{z[0]}" cy="1045" rx="198" ry="266" fill="{colors["butter"]}" opacity="0.40"/>',
+            f'<circle cx="{z[0]}" cy="820" r="98" fill="#E5B998" opacity="0.68"/>',
         ]
     )
 
 
-def irregular_bubble_path(x: float, y: float, w: float, h: float, seed: int) -> str:
-    rng = random.Random(seed)
-    top = [(x + 30, y + rng.uniform(-3, 3)), (x + w * 0.35, y + rng.uniform(-6, 1)), (x + w - 34, y + rng.uniform(-2, 5))]
-    right = [(x + w + rng.uniform(-2, 5), y + 34), (x + w + rng.uniform(-4, 3), y + h * 0.55), (x + w + rng.uniform(-2, 3), y + h - 30)]
-    bottom = [(x + w - 34, y + h + rng.uniform(-3, 4)), (x + w * 0.55, y + h + rng.uniform(-2, 6)), (x + 30, y + h + rng.uniform(-4, 3))]
-    left = [(x + rng.uniform(-4, 3), y + h - 32), (x + rng.uniform(-3, 4), y + h * 0.46), (x + rng.uniform(-2, 4), y + 30)]
+def soft_tv_path(x: float, y: float, w: float, h: float, radius: float) -> str:
+    """One smooth, slightly oval TV balloon used everywhere."""
+    r = min(radius, h * 0.46, w * 0.19)
     return (
-        f"M {top[0][0]:.1f},{top[0][1]:.1f} "
-        f"C {top[1][0]-80:.1f},{top[1][1]:.1f} {top[1][0]+80:.1f},{top[1][1]:.1f} {top[2][0]:.1f},{top[2][1]:.1f} "
-        f"Q {x+w:.1f},{y:.1f} {right[0][0]:.1f},{right[0][1]:.1f} "
-        f"C {right[1][0]:.1f},{right[1][1]-60:.1f} {right[1][0]:.1f},{right[1][1]+60:.1f} {right[2][0]:.1f},{right[2][1]:.1f} "
-        f"Q {x+w:.1f},{y+h:.1f} {bottom[0][0]:.1f},{bottom[0][1]:.1f} "
-        f"C {bottom[1][0]+90:.1f},{bottom[1][1]:.1f} {bottom[1][0]-90:.1f},{bottom[1][1]:.1f} {bottom[2][0]:.1f},{bottom[2][1]:.1f} "
-        f"Q {x:.1f},{y+h:.1f} {left[0][0]:.1f},{left[0][1]:.1f} "
-        f"C {left[1][0]:.1f},{left[1][1]+55:.1f} {left[1][0]:.1f},{left[1][1]-55:.1f} {left[2][0]:.1f},{left[2][1]:.1f} "
-        f"Q {x:.1f},{y:.1f} {top[0][0]:.1f},{top[0][1]:.1f} Z"
+        f"M {x+r:.1f},{y:.1f} "
+        f"C {x+w*0.34:.1f},{y-3:.1f} {x+w*0.66:.1f},{y-3:.1f} {x+w-r:.1f},{y:.1f} "
+        f"C {x+w-r*0.26:.1f},{y:.1f} {x+w:.1f},{y+r*0.32:.1f} {x+w:.1f},{y+r:.1f} "
+        f"L {x+w:.1f},{y+h-r:.1f} "
+        f"C {x+w:.1f},{y+h-r*0.32:.1f} {x+w-r*0.26:.1f},{y+h:.1f} {x+w-r:.1f},{y+h:.1f} "
+        f"C {x+w*0.66:.1f},{y+h+3:.1f} {x+w*0.34:.1f},{y+h+3:.1f} {x+r:.1f},{y+h:.1f} "
+        f"C {x+r*0.26:.1f},{y+h:.1f} {x:.1f},{y+h-r*0.32:.1f} {x:.1f},{y+h-r:.1f} "
+        f"L {x:.1f},{y+r:.1f} "
+        f"C {x:.1f},{y+r*0.32:.1f} {x+r*0.26:.1f},{y:.1f} {x+r:.1f},{y:.1f} Z"
     )
 
 
-def tail_path(x: float, y: float, w: float, h: float, target: tuple[float, float]) -> str:
-    """Draw a soft curved pointer that stops just before the speaker's mouth."""
-    tx, ty = target
-    cx, cy = x + w / 2, y + h / 2
-    dx, dy = tx - cx, ty - cy
+def short_tail_path(
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    mouth: tuple[float, float],
+    progress: float,
+    base_width: float,
+    max_length: float,
+) -> tuple[str, tuple[float, float], tuple[float, float]]:
+    """Create one clean tapered tail, aimed at the mouth but never overlong.
+
+    The visible tail stops before the face; the eye completes the invisible line.
+    All normal tails share one width, curvature and maximum length.
+    """
+    mx, my = mouth
+    attach_x = min(max(mx, x + 52), x + w - 52)
+    attach_y = y + h - 1
+    dx = mx - attach_x
+    dy = my - attach_y
     distance = max(1.0, math.hypot(dx, dy))
-    tip_x = tx - dx / distance * 18
-    tip_y = ty - dy / distance * 18
+    ux, uy = dx / distance, dy / distance
+    visible = min(distance * progress, max_length)
+    tip_x = attach_x + ux * visible
+    tip_y = attach_y + uy * visible
 
-    if abs(dx / max(w, 1)) > abs(dy / max(h, 1)):
-        attach_y = min(max(ty, y + 42), y + h - 42)
-        if dx > 0:
-            ax = x + w - 2
-            return (
-                f"M {ax-3:.1f},{attach_y-17:.1f} "
-                f"C {ax+34:.1f},{attach_y-8:.1f} {tip_x-38:.1f},{tip_y-22:.1f} {tip_x:.1f},{tip_y:.1f} "
-                f"C {tip_x-35:.1f},{tip_y+18:.1f} {ax+26:.1f},{attach_y+10:.1f} {ax-3:.1f},{attach_y+17:.1f} Z"
-            )
-        ax = x + 2
-        return (
-            f"M {ax+3:.1f},{attach_y-17:.1f} "
-            f"C {ax-34:.1f},{attach_y-8:.1f} {tip_x+38:.1f},{tip_y-22:.1f} {tip_x:.1f},{tip_y:.1f} "
-            f"C {tip_x+35:.1f},{tip_y+18:.1f} {ax-26:.1f},{attach_y+10:.1f} {ax+3:.1f},{attach_y+17:.1f} Z"
-        )
-
-    attach_x = min(max(tx, x + 55), x + w - 55)
-    if dy >= 0:
-        ay = y + h - 2
-        bend = 24 if tip_x >= attach_x else -24
-        return (
-            f"M {attach_x-18:.1f},{ay-3:.1f} "
-            f"C {attach_x+bend-5:.1f},{ay+30:.1f} {tip_x+bend:.1f},{tip_y-42:.1f} {tip_x:.1f},{tip_y:.1f} "
-            f"C {tip_x-bend*.35:.1f},{tip_y-34:.1f} {attach_x-bend-4:.1f},{ay+24:.1f} {attach_x+20:.1f},{ay-3:.1f} Z"
-        )
-    ay = y + 2
-    bend = 24 if tip_x >= attach_x else -24
-    return (
-        f"M {attach_x-18:.1f},{ay+3:.1f} "
-        f"C {attach_x+bend-5:.1f},{ay-30:.1f} {tip_x+bend:.1f},{tip_y+42:.1f} {tip_x:.1f},{tip_y:.1f} "
-        f"C {tip_x-bend*.35:.1f},{tip_y+34:.1f} {attach_x-bend-4:.1f},{ay-24:.1f} {attach_x+20:.1f},{ay+3:.1f} Z"
+    px, py = -uy, ux
+    half = base_width / 2
+    left_x = attach_x + px * half
+    left_y = attach_y + py * half
+    right_x = attach_x - px * half
+    right_y = attach_y - py * half
+    bend_x = attach_x + ux * visible * 0.55 + px * 5
+    bend_y = attach_y + uy * visible * 0.55 + py * 5
+    path = (
+        f"M {left_x:.1f},{left_y:.1f} "
+        f"Q {bend_x:.1f},{bend_y:.1f} {tip_x:.1f},{tip_y:.1f} "
+        f"Q {bend_x-px*10:.1f},{bend_y-py*10:.1f} {right_x:.1f},{right_y:.1f} Z"
     )
+    return path, (attach_x, attach_y), (tip_x, tip_y)
 
 
-def bubble_palette(speaker: str, theme: dict[str, Any], emphasis: bool) -> tuple[str, str, str]:
-    colors = theme["colors"]
-    if emphasis:
-        return colors["cream"], colors["coral"], colors["coral"]
-    if speaker == "阿迟":
-        return colors["sky"], colors["sky_line"], colors["sky_line"]
-    return colors["butter"], colors["butter_line"], colors["butter_line"]
+def align_x(slot: dict[str, Any], width: float) -> float:
+    x = float(slot["x"])
+    max_w = float(slot["max_w"])
+    align = slot.get("align", "left")
+    if align == "right":
+        return x + max_w - width
+    if align == "center":
+        return x + (max_w - width) / 2
+    return x
 
 
-def prepare_bubble(
+def prepare_balloon(
     bubble: dict[str, Any],
-    slot: dict[str, float],
+    slot: dict[str, Any],
     mouth: tuple[float, float],
     theme: dict[str, Any],
-    seed: int,
     kind: str,
 ) -> dict[str, Any]:
-    speaker = bubble["speaker"]
-    emphasis = bool(bubble.get("emphasis"))
-    fill, stroke, label_color = bubble_palette(speaker, theme, emphasis)
     type_spec = theme["type"]
+    balloon_spec = theme["balloon"]
     font_spec = theme["font"]
-    size = type_spec["cover_size"] if kind == "cover" else type_spec["bubble_size"]
-    if slot["w"] < 390:
-        size = type_spec["bubble_small_size"]
-    max_units = max(7.5, (slot["w"] - 70) / (size * 0.98))
-    lines = wrap_text(bubble["text"], max_units)
-    label_h = 29 if kind != "cover" else 0
-    padding_top = 40 if kind == "cover" else 31
-    line_h = size * type_spec["line_height"]
-    height = padding_top + label_h + len(lines) * line_h + 28
-    while height > slot["max_h"] and size > 33:
-        size -= 2
-        max_units = max(7.5, (slot["w"] - 70) / (size * 0.98))
-        lines = wrap_text(bubble["text"], max_units)
-        line_h = size * type_spec["line_height"]
-        height = padding_top + label_h + len(lines) * line_h + 28
-    height = min(height, slot["max_h"])
-    x, y, w = slot["x"], slot["y"], slot["w"]
+
+    size = float(type_spec["cover_size"] if kind == "cover" else type_spec["bubble_size"])
+    if bubble.get("compact"):
+        size = float(type_spec["bubble_small_size"])
+
+    max_w = float(slot["max_w"])
+    max_h = float(slot["max_h"])
+    pad_x = float(balloon_spec["padding_x"])
+    pad_y = float(balloon_spec["padding_y"])
+    leading = float(type_spec["line_height"])
+
+    while True:
+        line_limit = max(5.5, (max_w - 2 * pad_x) / (size * 0.96))
+        lines = wrap_text(str(bubble["text"]), line_limit)
+        max_line = max(visual_units(line) for line in lines)
+        width = min(max_w, max(float(balloon_spec["min_width"]), max_line * size * 0.96 + 2 * pad_x))
+        height = 2 * pad_y + len(lines) * size * leading - size * (leading - 1)
+        if height <= max_h and width <= max_w or size <= float(type_spec["min_size"]):
+            break
+        size -= 1.5
+
+    x = align_x(slot, width)
+    y = float(slot["y"])
+    body_path = soft_tv_path(x, y, width, height, float(balloon_spec["radius"]))
+    tail_path, tail_attach, tail_tip = short_tail_path(
+        x,
+        y,
+        width,
+        height,
+        mouth,
+        float(balloon_spec["tail_progress"]),
+        float(balloon_spec["tail_base_width"]),
+        float(balloon_spec["tail_max_length"]),
+    )
     return {
-        "speaker": speaker,
-        "emphasis": emphasis,
-        "fill": fill,
-        "stroke": stroke,
-        "label_color": label_color,
-        "font": font_spec["family"],
-        "font_spec": font_spec,
-        "type_spec": type_spec,
-        "size": size,
-        "lines": lines,
-        "label_h": label_h,
-        "padding_top": padding_top,
-        "line_h": line_h,
-        "height": height,
+        "speaker": bubble["speaker"],
+        "emphasis": bool(bubble.get("emphasis")),
         "x": x,
         "y": y,
-        "w": w,
-        "path": irregular_bubble_path(x, y, w, height, seed),
-        "tail": tail_path(x, y, w, height, mouth),
+        "w": width,
+        "h": height,
+        "size": size,
+        "lines": lines,
+        "body_path": body_path,
+        "tail_path": tail_path,
+        "tail_attach": tail_attach,
+        "tail_tip": tail_tip,
         "mouth": mouth,
-        "kind": kind,
+        "font": font_spec["family"],
+        "font_weight": font_spec["display_weight"] if bubble.get("emphasis") else font_spec["body_weight"],
+        "stroke_width": font_spec["synthetic_stroke"],
+        "leading": leading,
     }
 
 
-def render_bubble_tail(layout: dict[str, Any]) -> str:
-    shadow_color = layout["stroke"]
-    return "\n".join(
-        [
-            f'<g class="speech-tail" data-speaker="{html.escape(layout["speaker"])}" data-tail-target="{layout["mouth"][0]},{layout["mouth"][1]}">',
-            f'<path d="{layout["tail"]}" fill="{shadow_color}" opacity="0.12" transform="translate(5 6)"/>',
-            f'<path d="{layout["tail"]}" fill="{layout["fill"]}" stroke="{layout["stroke"]}" stroke-width="2.8" stroke-linejoin="round"/>',
-            "</g>",
-        ]
-    )
+def render_balloon(layout: dict[str, Any], theme: dict[str, Any]) -> str:
+    colors = theme["colors"]
+    balloon = theme["balloon"]
+    fill = colors["balloon"]
+    stroke = colors["balloon_line"]
+    shadow = colors["shadow"]
+    x, y, w, h = layout["x"], layout["y"], layout["w"], layout["h"]
 
+    text_height = len(layout["lines"]) * layout["size"] * layout["leading"] - layout["size"] * (layout["leading"] - 1)
+    first_baseline = y + (h - text_height) / 2 + layout["size"] * 0.78
 
-def render_bubble_body(layout: dict[str, Any], theme: dict[str, Any]) -> str:
-    speaker = layout["speaker"]
-    x, y, w, height = layout["x"], layout["y"], layout["w"], layout["height"]
-    font_spec = layout["font_spec"]
-    font = layout["font"]
-    emphasis = layout["emphasis"]
-    shadow_color = theme["colors"]["coral"] if emphasis else layout["stroke"]
     parts = [
-        f'<g class="speech-bubble" data-speaker="{html.escape(speaker)}">',
-        f'<path d="{layout["path"]}" fill="{shadow_color}" opacity="0.12" transform="translate(6 7)"/>',
-        f'<path d="{layout["path"]}" fill="{layout["fill"]}" stroke="{layout["stroke"]}" stroke-width="2.8" stroke-linejoin="round"/>',
-        f'<path d="{layout["path"]}" fill="none" stroke="{layout["stroke"]}" stroke-width="1.0" opacity="0.28" transform="translate(2 -2)"/>',
-    ]
-    text_y = y + layout["padding_top"]
-    if layout["kind"] != "cover":
-        parts.append(
-            svg_text(
-                [speaker],
-                x + 34,
-                text_y,
-                21,
-                layout["label_color"],
-                font,
-                font_spec["label_weight"],
-                1.0,
-                font_spec["synthetic_stroke"] * 0.5,
-                letter_spacing=0.4,
-            )
-        )
-        text_y += layout["label_h"] + 15 + layout["size"] * 0.78
-    else:
-        text_y += layout["size"] * 0.78
-    parts.append(
+        f'<g class="speech-balloon" data-speaker="{html.escape(layout["speaker"])}" '
+        f'data-tail-progress="{balloon["tail_progress"]}" data-tail-target="{layout["mouth"][0]},{layout["mouth"][1]}">',
+        f'<path d="{layout["tail_path"]}" fill="{shadow}" opacity="{balloon["shadow_opacity"]}" transform="translate(3 4)"/>',
+        f'<path d="{layout["body_path"]}" fill="{shadow}" opacity="{balloon["shadow_opacity"]}" transform="translate(3 4)"/>',
+        f'<path d="{layout["tail_path"]}" fill="{fill}" stroke="{stroke}" stroke-width="{balloon["stroke_width"]}" stroke-linejoin="round"/>',
+        f'<path d="{layout["body_path"]}" fill="{fill}" stroke="{stroke}" stroke-width="{balloon["stroke_width"]}" stroke-linejoin="round"/>',
         svg_text(
             layout["lines"],
-            x + 34,
-            text_y,
+            x + w / 2,
+            first_baseline,
             layout["size"],
-            theme["colors"]["ink"],
-            font,
-            font_spec["display_weight"] if emphasis else font_spec["body_weight"],
-            layout["type_spec"]["line_height"],
-            font_spec["synthetic_stroke"],
-        )
-    )
-    if emphasis:
-        underline_y = y + height - 22
+            colors["ink"],
+            layout["font"],
+            layout["font_weight"],
+            layout["leading"],
+            layout["stroke_width"],
+            anchor="middle",
+            letter_spacing=0.10,
+        ),
+    ]
+    if layout["emphasis"]:
+        underline_y = y + h - 20
         parts.append(
-            f'<path d="M {x+38:.1f},{underline_y:.1f} Q {x+w*0.36:.1f},{underline_y+7:.1f} {x+w*0.67:.1f},{underline_y+1:.1f}" '
-            f'fill="none" stroke="{theme["colors"]["coral"]}" stroke-width="5.5" stroke-linecap="round" opacity="0.76"/>'
+            f'<path d="M {x+w*0.25:.1f},{underline_y:.1f} Q {x+w*0.50:.1f},{underline_y+5:.1f} {x+w*0.75:.1f},{underline_y:.1f}" '
+            f'fill="none" stroke="{colors["coral"]}" stroke-width="4.6" stroke-linecap="round" opacity="0.72"/>'
         )
     parts.append("</g>")
     return "\n".join(parts)
 
 
-def caption_sticker(value: str, slot: dict[str, float], theme: dict[str, Any], seed: int) -> str:
+def page_header(theme: dict[str, Any], category: str) -> str:
+    colors = theme["colors"]
     font = theme["font"]["family"]
-    color = theme["colors"]["lavender_line"]
-    fill = theme["colors"]["lavender"]
-    x, y, w = slot["x"], slot["y"], slot["w"]
-    lines = wrap_text(value, 22)
-    h = min(slot["max_h"], 44 + len(lines) * 36)
-    path = irregular_bubble_path(x, y, w, h, seed)
     return "\n".join(
         [
-            f'<g class="caption-sticker"><path d="{path}" fill="{fill}" stroke="{color}" stroke-width="2.5" stroke-dasharray="8 5"/>',
-            svg_text(lines, x + w / 2, y + 42, theme["type"]["caption_size"], color, font, 600, 1.18, 0.2, anchor="middle"),
-            "</g>",
+            svg_text(["坐一会儿再走"], 62, 66, 23, colors["muted"], font, 600, 1.0, 0.15),
+            f'<path d="M 62 87 Q 98 92 137 86" fill="none" stroke="{colors["coral"]}" stroke-width="4.2" stroke-linecap="round"/>',
+            svg_text([category], 1018, 67, 20, colors["sage_line"], font, 600, 1.0, 0.10, anchor="end"),
         ]
     )
 
 
-def doodles(page_number: int, theme: dict[str, Any]) -> str:
-    c = theme["colors"]
-    if page_number % 3 == 1:
-        return "\n".join(
-            [
-                f'<path d="M 934 104 q 25 -22 45 2 q -12 20 -35 16" fill="none" stroke="{c["mint_line"]}" stroke-width="5" stroke-linecap="round"/>',
-                f'<circle cx="970" cy="145" r="7" fill="{c["coral"]}" opacity="0.8"/>',
-                f'<circle cx="997" cy="128" r="4" fill="{c["sky_line"]}" opacity="0.7"/>',
-            ]
-        )
-    if page_number % 3 == 2:
-        return "\n".join(
-            [
-                f'<path d="M 83 118 q 22 -18 42 0 q -12 18 -31 12" fill="none" stroke="{c["coral"]}" stroke-width="5" stroke-linecap="round"/>',
-                f'<path d="M 945 122 l 9 18 18 9-18 9-9 18-9-18-18-9 18-9z" fill="{c["butter"]}" stroke="{c["butter_line"]}" stroke-width="2" opacity="0.85"/>',
-            ]
-        )
-    return "\n".join(
-        [
-            f'<path d="M 90 118 q 18 -16 36 0 q -9 18 -28 15" fill="none" stroke="{c["mint_line"]}" stroke-width="5" stroke-linecap="round"/>',
-            f'<path d="M 961 112 q 22 18 0 38 q -22 -18 0 -38" fill="{c["sky"]}" stroke="{c["sky_line"]}" stroke-width="2.5" opacity="0.8"/>',
-        ]
-    )
-
-
-def page_mark(page_number: int, theme: dict[str, Any]) -> str:
-    c = theme["colors"]
+def page_footer(page_number: int, theme: dict[str, Any]) -> str:
+    colors = theme["colors"]
     marks = []
-    start = 450
+    start = 466
     for index in range(1, 6):
-        x = start + (index - 1) * 36
+        x = start + (index - 1) * 34
         if index == page_number:
-            marks.append(f'<path d="M {x-8} 1370 q 8 -11 17 0 q -8 12 -17 0" fill="{c["coral"]}"/>')
+            marks.append(f'<ellipse cx="{x}" cy="1374" rx="9" ry="5" fill="{colors["coral"]}"/>')
         else:
-            marks.append(f'<circle cx="{x}" cy="1370" r="4.5" fill="{c["proof"]}"/>')
+            marks.append(f'<circle cx="{x}" cy="1374" r="4" fill="{colors["proof"]}"/>')
     return "\n".join(marks)
+
+
+def render_note(page: dict[str, Any], theme: dict[str, Any]) -> str:
+    if not page.get("note"):
+        return ""
+    colors = theme["colors"]
+    font = theme["font"]["family"]
+    lines = wrap_text(page["note"], 18)
+    return "\n".join(
+        [
+            f'<path d="M 72 1198 Q 210 1187 356 1199" fill="none" stroke="{colors["coral"]}" stroke-width="4.2" stroke-linecap="round" opacity="0.70"/>',
+            svg_text(lines, 72, 1250, theme["type"]["note_size"], colors["ink"], font, 700, 1.18, 0.22),
+        ]
+    )
 
 
 def render_page(
@@ -481,55 +430,51 @@ def render_page(
     art_dir: Path,
 ) -> str:
     colors = theme["colors"]
-    font = theme["font"]["family"]
     plate = visual["plates"][page["plate"]]
     art_path = find_art(art_dir, page["plate"])
-    bubble_layouts = []
-    for index, bubble in enumerate(page["bubbles"], 1):
+
+    layouts = []
+    for bubble in page["bubbles"]:
         slot = plate["slots"][bubble["slot"]]
         mouth = tuple(plate["mouths"][bubble["speaker"]])
-        bubble_layouts.append(prepare_bubble(bubble, slot, mouth, theme, page_number * 100 + index, page["kind"]))
+        layouts.append(prepare_balloon(bubble, slot, mouth, theme, page["kind"]))
 
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">',
+        '<defs>',
+        '<filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.31" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 0.52  0 0 0 0 0.46  0 0 0 0 0.38  0 0 0 .035 0"/></filter>',
+        '</defs>',
         f'<rect width="1080" height="1440" fill="{colors["paper"]}"/>',
-        '<defs><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.32" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0.55  0 0 0 0 0.50  0 0 0 0 0.40  0 0 0 .055 0"/></filter></defs>',
-        '<rect width="1080" height="1440" filter="url(#paper)" opacity="0.42"/>',
-        f'<ellipse cx="220" cy="510" rx="250" ry="360" fill="{colors["sky"]}" opacity="0.12"/>',
-        f'<ellipse cx="900" cy="610" rx="260" ry="390" fill="{colors["butter"]}" opacity="0.12"/>',
+        '<rect width="1080" height="1440" filter="url(#paper)" opacity="0.34"/>',
+        f'<circle cx="1005" cy="120" r="8" fill="{colors["coral"]}" opacity="0.75"/>',
+        f'<path d="M 954 114 q 18 -17 37 -2" fill="none" stroke="{colors["sage_line"]}" stroke-width="4" stroke-linecap="round" opacity="0.78"/>',
+        embedded_art(art_path) if art_path else proof_art(plate, theme),
+        page_header(theme, episode.get("category", "对话")),
     ]
-    parts.extend(render_bubble_tail(layout) for layout in bubble_layouts)
-    parts.append(embedded_art(art_path) if art_path else proof_art(plate, theme))
-    parts.extend(
-        [
-            doodles(page_number, theme),
-            svg_text(["坐一会儿再走"], 62, 68, theme["type"]["brand_size"], colors["muted"], font, 600, 1.0, 0.15),
-            f'<path d="M 62 88 q 34 7 74 -2" fill="none" stroke="{colors["coral"]}" stroke-width="5" stroke-linecap="round"/>',
-        ]
-    )
-
-    if page.get("caption"):
-        parts.append(caption_sticker(page["caption"], plate["slots"]["caption"], theme, 900 + page_number))
-
-    parts.extend(render_bubble_body(layout, theme) for layout in bubble_layouts)
-
-    if page.get("kicker"):
-        parts.append(svg_text([page["kicker"]], 68, 1290, 30, colors["mint_line"], font, 600, 1.0, 0.18))
-        parts.append(
-            f'<path d="M 69 1310 q 120 16 255 -3" fill="none" stroke="{colors["mint_line"]}" stroke-width="4" stroke-linecap="round" opacity="0.65"/>'
-        )
-    if page.get("note"):
-        note_lines = wrap_text(page["note"], 16)
-        parts.append(
-            f'<path d="M 62 1168 q 115 -20 240 3 q 135 22 282 -4" fill="none" stroke="{colors["coral"]}" stroke-width="5" stroke-linecap="round" opacity="0.72"/>'
-        )
-        parts.append(svg_text(note_lines, 65, 1225, theme["type"]["note_size"], colors["ink"], font, 700, 1.18, 0.22))
+    parts.extend(render_balloon(layout, theme) for layout in layouts)
+    note = render_note(page, theme)
+    if note:
+        parts.append(note)
     if page.get("question"):
-        parts.append(svg_text([page["question"]], 65, 1330, theme["type"]["question_size"], colors["muted"], font, 600, 1.0, 0.12))
+        font = theme["font"]["family"]
+        parts.append(
+            svg_text(
+                [page["question"]],
+                72,
+                1320,
+                theme["type"]["question_size"],
+                colors["muted"],
+                font,
+                600,
+                1.0,
+                0.12,
+            )
+        )
     if page_number == 5:
-        parts.append(svg_text([episode.get("source", "")], 1015, 1390, 17, colors["muted"], font, 500, 1.0, anchor="end"))
-    parts.append(page_mark(page_number, theme))
+        font = theme["font"]["family"]
+        parts.append(svg_text([episode.get("source", "")], 1015, 1395, 16, colors["muted"], font, 500, 1.0, anchor="end"))
+    parts.append(page_footer(page_number, theme))
     parts.append("</svg>")
     return "\n".join(parts) + "\n"
 
@@ -578,7 +523,7 @@ def build(
                             "assets/references/achi-zhoushu.png",
                         ],
                         "output_path": f"assets/plates/{plate_id}.png",
-                        "reuse_policy": "generate once, reuse across episodes; dialogue balloons are local SVG overlays",
+                        "reuse_policy": "generate once; all balloons are one local SVG system",
                     },
                     ensure_ascii=False,
                 )
@@ -606,8 +551,9 @@ def build(
         json.dumps(
             {
                 "episode_id": episode["episode_id"],
-                "format": "five-card-mouth-anchored-bubbles-v2",
+                "format": "five-card-unified-balloon-v3",
                 "font_family": theme["font"]["family"],
+                "balloon_style": "soft-tv-standard",
                 "pages": manifest_pages,
             },
             ensure_ascii=False,
@@ -620,7 +566,7 @@ def build(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build one five-card SELF_IP episode with mouth-anchored dialogue balloons.")
+    parser = argparse.ArgumentParser(description="Build one five-card SELF_IP episode with one unified professional balloon style.")
     parser.add_argument("episode", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--art-dir", type=Path)

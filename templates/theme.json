@@ -7,33 +7,40 @@
     "family": "'LXGW WenKai Medium','LXGW WenKai','霞鹜文楷','AR PL KaitiM GB','KaiTi','STKaiti',cursive",
     "display_weight": 700,
     "body_weight": 600,
-    "label_weight": 600,
-    "synthetic_stroke": 0.52
+    "synthetic_stroke": 0.38
   },
   "colors": {
-    "paper": "#FFF9EB",
-    "ink": "#30445B",
-    "muted": "#7F796F",
-    "coral": "#F07B61",
-    "sky": "#CDEAF0",
-    "sky_line": "#4D8291",
-    "butter": "#FFF0AF",
-    "butter_line": "#B97A35",
-    "mint": "#D9EEDB",
-    "mint_line": "#5D8D70",
-    "lavender": "#E9DDF2",
-    "lavender_line": "#7A668A",
-    "cream": "#FFFDF6",
-    "proof": "#D8CFC0"
+    "paper": "#FCF7EC",
+    "ink": "#31465B",
+    "muted": "#7C766D",
+    "balloon": "#FFFDF8",
+    "balloon_line": "#52667A",
+    "shadow": "#7F715F",
+    "coral": "#E97B63",
+    "sage": "#DCEBE2",
+    "sage_line": "#65877A",
+    "sky": "#D8EDF1",
+    "butter": "#F7E8B3",
+    "proof": "#D9D0C2"
+  },
+  "balloon": {
+    "stroke_width": 2.5,
+    "radius": 52,
+    "padding_x": 40,
+    "padding_y": 31,
+    "min_width": 210,
+    "tail_progress": 0.56,
+    "tail_base_width": 28,
+    "shadow_opacity": 0.055,
+    "tail_max_length": 115
   },
   "type": {
-    "brand_size": 24,
-    "bubble_size": 44,
-    "bubble_small_size": 37,
-    "cover_size": 53,
-    "caption_size": 28,
+    "bubble_size": 43,
+    "bubble_small_size": 39,
+    "cover_size": 50,
+    "min_size": 34,
     "note_size": 34,
-    "question_size": 27,
-    "line_height": 1.27
+    "question_size": 25,
+    "line_height": 1.23
   }
 }

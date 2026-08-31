@@ -1,6 +1,7 @@
 {
   "episode_id": "EP-001",
-  "title": "面都坨了，还要回‘没事’吗？",
+  "title": "我妈摔了一跤，第一个知道的是邻居",
+  "category": "亲情",
   "source": "原创虚构",
   "pages": [
     {
@@ -9,12 +10,11 @@
       "bubbles": [
         {
           "speaker": "阿迟",
-          "slot": "cover-main",
-          "text": "面都坨了。\n我还要回‘没事’吗？",
+          "slot": "cover",
+          "text": "我妈摔了一跤。\n第一个知道的是邻居。\n我三天后才知道。",
           "emphasis": true
         }
-      ],
-      "kicker": "一个没说出口的小请求"
+      ]
     },
     {
       "kind": "dialogue",
@@ -22,13 +22,8 @@
       "bubbles": [
         {
           "speaker": "阿迟",
-          "slot": "achi-main",
-          "text": "我不是非要他来。\n就是……别总等我出门了才说。"
-        },
-        {
-          "speaker": "周叔",
-          "slot": "zhoushu-small",
-          "text": "你回他什么？"
+          "slot": "left-main",
+          "text": "我问她为什么不早说。\n她回：\n“告诉你有什么用？\n你又回不来。”"
         }
       ]
     },
@@ -37,14 +32,14 @@
       "plate": "zhoushu-talk",
       "bubbles": [
         {
-          "speaker": "阿迟",
-          "slot": "achi-small",
-          "text": "还是‘没事’。\n不然呢？"
+          "speaker": "周叔",
+          "slot": "right-main",
+          "text": "她以前打来，\n你总接吗？"
         },
         {
-          "speaker": "周叔",
-          "slot": "zhoushu-main",
-          "text": "你筷子都没拆。\n哪儿没事。"
+          "speaker": "阿迟",
+          "slot": "left-main",
+          "text": "很少。\n……我总说：\n妈，我在开会。"
         }
       ]
     },
@@ -54,13 +49,13 @@
       "bubbles": [
         {
           "speaker": "周叔",
-          "slot": "zhoushu-main",
-          "text": "先别问你们还算不算朋友。\n就说这回。"
+          "slot": "right-main",
+          "text": "先别追问为什么。\n问她：明天几点复诊？"
         },
         {
           "speaker": "阿迟",
-          "slot": "achi-main",
-          "text": "下次有变，能不能在我出门前跟我说一声？",
+          "slot": "left-action",
+          "text": "妈，明天几点复诊？\n我请半天假陪你。",
           "emphasis": true
         }
       ]
@@ -68,22 +63,22 @@
     {
       "kind": "landing",
       "plate": "together",
-      "caption": "十分钟后，他回：对不起。下次我早点说。",
       "bubbles": [
         {
           "speaker": "阿迟",
-          "slot": "achi-small",
-          "text": "就这样？"
+          "slot": "left-main",
+          "text": "她回：\n“不用请假。\n晚上给我打个视频就行。”"
         },
         {
           "speaker": "周叔",
-          "slot": "zhoushu-main",
-          "text": "嗯。先吃面。\n别的，看以后。"
+          "slot": "right-small",
+          "text": "那就晚上打。",
+          "compact": true
         }
       ],
-      "note": "那句‘没事’，这次没发出去。",
-      "question": "你最近哪句‘没事’，其实很有事？"
+      "note": "晚上八点，阿迟提前拨了过去。",
+      "question": "你家里人的“不用”，后面通常还有什么？"
     }
   ],
-  "caption": "“没事”打出来又删掉的时候，阿迟也说不清自己在怕什么。怕显得计较，还是怕问完以后，连朋友都做不成。\n\n周叔没劝他大度，也没替那个人找理由，只说：先别一次问完十年的友情。就说这回。\n\n于是阿迟发了一句：下次有变，能不能在我出门前跟我说一声？\n\n对方过了十分钟回：对不起。下次我早点说。\n\n事情当然没这么快解决，面也还是坨了。但那句“没事”，这次没发出去。\n\n本故事为原创虚构。"
+  "caption": "妈妈摔了一跤，阿迟是三天后才知道的。\n\n他最先问的是：为什么不告诉我？周叔却问了另一个问题——她以前打来，你总接吗？\n\n阿迟想起自己说过太多次“妈，我在开会”。妈妈不是突然变得什么都不说的。\n\n这一次，他没有继续追问，也没有急着讲道理，只问明天几点复诊。她还是先回了“不用”，但后面还有一句：晚上给我打个视频。\n\n晚上八点，阿迟提前拨了过去。\n\n本故事为原创虚构。"
 }
