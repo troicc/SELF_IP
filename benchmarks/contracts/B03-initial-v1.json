@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "B03-initial-v1",
+  "scene_id": "B03",
+  "status": "superseded",
+  "superseded_reason": "初轮生成后删除了没有叙事必要的社区快递架，并把场景收束为墙边纸箱。保留本合同只为验证已经生成的初轮 PNG 与当时提示词之间的对应关系；新生成一律使用 benchmarks/scenes.yaml 当前版本。",
+  "source_snapshot": {
+    "title": "纸箱前先看当事人",
+    "subject_zh": "社区快递架右下，阿迟停在一只底角受潮的无字纸箱前，仍背着珊瑚橙旧帆布包；周叔站在箱侧低头查看渗水处，双手仍握自己的保温杯；琴姨把工具袋放在自己脚边，先抬头看阿迟",
+    "subject_en": "At the lower-right of the community parcel rack, Achi pauses before a blank cardboard box with one damp bottom corner, still wearing his worn coral-orange canvas shoulder bag; Uncle Zhou stands beside the box looking down at the damp area while both hands remain on his own thermos; Aunt Qin sets her tool bag beside her own feet and looks up at Achi first",
+    "composition_zh": "三人与纸箱集中在右下并保持半步距离，谁都不挡住阿迟；顶部和左侧对话区留空",
+    "composition_en": "the three people and box grouped in the lower-right with half-step gaps, no one blocking Achi, leaving the top and left dialogue regions empty",
+    "necessary_props": ["受潮的无字纸箱", "社区快递架", "周叔保温杯", "琴姨工具袋", "阿迟橙色帆布包"],
+    "visual_action": "纸箱仍在原处且无人碰它；周叔先看箱底，琴姨先看阿迟，测试三人不同注意方向",
+    "reserved_text_regions": [
+      {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.18},
+      {"id": "dialogue", "x": 0.07, "y": 0.25, "width": 0.31, "height": 0.2}
+    ]
+  },
+  "job_prompt_sha256_by_style": {
+    "10": "aac6b7687a26ff00572172a403d1c0a5a8da5675354d0eac600d8fee633855ba",
+    "14": "506837bc06794ae164d542540c2c7f356ac0671889f1548150217f534f73528c",
+    "18": "e370161a66baf8c9d0201f9c9f5b45f76a0b6a818475cdb92ff0bce6b09d5e8a"
+  }
+}

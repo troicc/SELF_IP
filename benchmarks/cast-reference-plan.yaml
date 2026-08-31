@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.1.0",
+  "purpose": "先建立一套不承担候选画风职责的 identity-only 中性角色参考，并在 10、14、18 三组的 12 个标准场景中使用完全相同的文件，避免 cast reference 污染风格比较。候选参考不是最终 dialogue-sketch-v1 资产。",
+  "source_of_identity": "ip/CAST_BIBLE.yaml",
+  "separation_rule": "这些文件只能进入 character_references，永远不能进入 style_references。",
+  "text_policy": "No text, labels, letters, numbers or pseudo-text inside any reference image.",
+  "transport_rule": "调用端最多接收 5 张参考图。三人同框时使用一张额外的 identity-only cast-trio transport sheet 加两张双人 sheet；单人和双人场景仍使用独立 sheet。transport sheet 不是身份真源。",
+  "styles": [
+    {
+      "style_id": "10",
+      "individual_sheets": {
+        "achi": "benchmarks/reference-assets/identity-neutral/achi.png",
+        "zhoushu": "benchmarks/reference-assets/identity-neutral/zhoushu.png",
+        "qinyi": "benchmarks/reference-assets/identity-neutral/qinyi.png"
+      },
+      "pair_sheets": {
+        "achi_zhoushu": "benchmarks/reference-assets/identity-neutral/pair-achi-zhoushu.png",
+        "achi_qinyi": "benchmarks/reference-assets/identity-neutral/pair-achi-qinyi.png"
+      },
+      "group_sheets": {
+        "achi_zhoushu_qinyi": "benchmarks/reference-assets/identity-neutral/cast-trio.png"
+      }
+    },
+    {
+      "style_id": "14",
+      "individual_sheets": {
+        "achi": "benchmarks/reference-assets/identity-neutral/achi.png",
+        "zhoushu": "benchmarks/reference-assets/identity-neutral/zhoushu.png",
+        "qinyi": "benchmarks/reference-assets/identity-neutral/qinyi.png"
+      },
+      "pair_sheets": {
+        "achi_zhoushu": "benchmarks/reference-assets/identity-neutral/pair-achi-zhoushu.png",
+        "achi_qinyi": "benchmarks/reference-assets/identity-neutral/pair-achi-qinyi.png"
+      },
+      "group_sheets": {
+        "achi_zhoushu_qinyi": "benchmarks/reference-assets/identity-neutral/cast-trio.png"
+      }
+    },
+    {
+      "style_id": "18",
+      "individual_sheets": {
+        "achi": "benchmarks/reference-assets/identity-neutral/achi.png",
+        "zhoushu": "benchmarks/reference-assets/identity-neutral/zhoushu.png",
+        "qinyi": "benchmarks/reference-assets/identity-neutral/qinyi.png"
+      },
+      "pair_sheets": {
+        "achi_zhoushu": "benchmarks/reference-assets/identity-neutral/pair-achi-zhoushu.png",
+        "achi_qinyi": "benchmarks/reference-assets/identity-neutral/pair-achi-qinyi.png"
+      },
+      "group_sheets": {
+        "achi_zhoushu_qinyi": "benchmarks/reference-assets/identity-neutral/cast-trio.png"
+      }
+    }
+  ],
+  "freeze_after_selection": {
+    "style_anchor": "assets/dialogue-sketch-v1/style-anchor.png",
+    "individual_sheets": {
+      "achi": "assets/dialogue-sketch-v1/cast/achi.png",
+      "zhoushu": "assets/dialogue-sketch-v1/cast/zhoushu.png",
+      "qinyi": "assets/dialogue-sketch-v1/cast/qinyi.png"
+    },
+    "pair_sheets": {
+      "achi_zhoushu": "assets/dialogue-sketch-v1/cast/pair-achi-zhoushu.png",
+      "achi_qinyi": "assets/dialogue-sketch-v1/cast/pair-achi-qinyi.png"
+    }
+  }
+}

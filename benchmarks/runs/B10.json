@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0.0",
+  "scene_id": "B10",
+  "status": "completed_pending_blind_review",
+  "generated_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_by": "objective-qa-operator",
+  "source_job_manifest": "build/benchmarks/jobs.jsonl",
+  "attempts": [
+    {
+      "job_id": "B10-S10-A01",
+      "style_id": "10",
+      "attempt": 1,
+      "prompt_sha256": "ac408873dc14bbaa6d14196bd16b74914086afa6b605947702abad49c783ca2e",
+      "output_path": "benchmarks/outputs/style-10/B10/attempt-01.png",
+      "output_sha256": "4b2271713b680c0125d49c848b99ffc0624142c4417cb0dceb9dcb19650dca8b",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S10-A02",
+      "style_id": "10",
+      "attempt": 2,
+      "prompt_sha256": "ac408873dc14bbaa6d14196bd16b74914086afa6b605947702abad49c783ca2e",
+      "output_path": "benchmarks/outputs/style-10/B10/attempt-02.png",
+      "output_sha256": "574a1717c475a997495cb49b276047e0a72bd9ebc06636936636728c595e7ad5",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S10-A03",
+      "style_id": "10",
+      "attempt": 3,
+      "prompt_sha256": "ac408873dc14bbaa6d14196bd16b74914086afa6b605947702abad49c783ca2e",
+      "output_path": "benchmarks/outputs/style-10/B10/attempt-03.png",
+      "output_sha256": "2b49753911ccbe891cd1542497b158861066e18ed3ba7869f1a44ba496a60171",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S14-A01",
+      "style_id": "14",
+      "attempt": 1,
+      "prompt_sha256": "e406ed7cfe7f43ef991a0828fc3799ac65a6958bf01977ba24df06574578611c",
+      "output_path": "benchmarks/outputs/style-14/B10/attempt-01.png",
+      "output_sha256": "b14f2b2ba1edafcc14e1295f0e1553bad27e6f622636d01b19220354a9165825",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S14-A02",
+      "style_id": "14",
+      "attempt": 2,
+      "prompt_sha256": "e406ed7cfe7f43ef991a0828fc3799ac65a6958bf01977ba24df06574578611c",
+      "output_path": "benchmarks/outputs/style-14/B10/attempt-02.png",
+      "output_sha256": "8bdddb78fc31a4c13e5cfd79531638b4c1e4b29e2c9ee06b1d4ff24dc9bb26e5",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S14-A03",
+      "style_id": "14",
+      "attempt": 3,
+      "prompt_sha256": "e406ed7cfe7f43ef991a0828fc3799ac65a6958bf01977ba24df06574578611c",
+      "output_path": "benchmarks/outputs/style-14/B10/attempt-03.png",
+      "output_sha256": "c434675d471a30c916f71b5c46aae729cbac0dd58052ddc24fa1cd9aa2c3736c",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S18-A01",
+      "style_id": "18",
+      "attempt": 1,
+      "prompt_sha256": "8a635b8798f1909eb98e09ee3fc876965b5cd89a6eaa14e1d4c5ddc91b590d10",
+      "output_path": "benchmarks/outputs/style-18/B10/attempt-01.png",
+      "output_sha256": "32c6b85a93831f99acdac81d2706ed19a7f3dd501ca33dc53ab51d1c89f57c04",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S18-A02",
+      "style_id": "18",
+      "attempt": 2,
+      "prompt_sha256": "8a635b8798f1909eb98e09ee3fc876965b5cd89a6eaa14e1d4c5ddc91b590d10",
+      "output_path": "benchmarks/outputs/style-18/B10/attempt-02.png",
+      "output_sha256": "896e4a59b42e42c352d634fc436c5d07b143275cf72a132c3b4ea0f1ba19f801",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    },
+    {
+      "job_id": "B10-S18-A03",
+      "style_id": "18",
+      "attempt": 3,
+      "prompt_sha256": "8a635b8798f1909eb98e09ee3fc876965b5cd89a6eaa14e1d4c5ddc91b590d10",
+      "output_path": "benchmarks/outputs/style-18/B10/attempt-03.png",
+      "output_sha256": "bf2475ad227b449dcbc38806ce008716a07fa8d8fe01abae0e500a8823c5a684",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入右侧 dialogue 安全区。",
+        "阿迟被画成通用中性或礼貌微笑，没有湿眼眶与单侧嘴角并存的克制表情。"
+      ]
+    }
+  ],
+  "unit_counts": {
+    "10": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "14": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "18": {
+      "attempt_count": 3,
+      "successful_count": 0
+    }
+  },
+  "blind_review": {
+    "status": "pending",
+    "scores_recorded_in": "benchmarks/scorecard.csv"
+  },
+  "operator_notes": [
+    "逐张查看原始 PNG，并用带红色 header、紫色 dialogue 覆盖层的 contact sheet 复核安全区。",
+    "successful 仅在九项客观检查全部为 true 时成立；审美分数另由盲评表记录。"
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.0.0",
+  "scene_id": "B09",
+  "status": "completed_pending_blind_review",
+  "generated_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_by": "objective-qa-operator",
+  "source_job_manifest": "build/benchmarks/jobs.jsonl",
+  "source_prompt_contract": "benchmarks/contracts/B09-initial-v1.json",
+  "attempts": [
+    {
+      "job_id": "B09-S10-A01",
+      "style_id": "10",
+      "attempt": 1,
+      "prompt_sha256": "fbb7a777f3d30b639f8ed6628a812b1d28b01ea63e49930cf59b3f61bfd26b72",
+      "output_path": "benchmarks/outputs/style-10/B09/attempt-01.png",
+      "output_sha256": "3f7a81edf9b6bbf093c26abf562d91732c82712cf8cbd22807c823a1955298fd",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔头部进入或接触左侧 dialogue 安全区。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S10-A02",
+      "style_id": "10",
+      "attempt": 2,
+      "prompt_sha256": "fbb7a777f3d30b639f8ed6628a812b1d28b01ea63e49930cf59b3f61bfd26b72",
+      "output_path": "benchmarks/outputs/style-10/B09/attempt-02.png",
+      "output_sha256": "4c2694c0c5b02e2a0169965afe85978409c9371a4bd8ab30125b3f5760917f42",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔头部进入或接触左侧 dialogue 安全区。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S10-A03",
+      "style_id": "10",
+      "attempt": 3,
+      "prompt_sha256": "fbb7a777f3d30b639f8ed6628a812b1d28b01ea63e49930cf59b3f61bfd26b72",
+      "output_path": "benchmarks/outputs/style-10/B09/attempt-03.png",
+      "output_sha256": "962236959f0e66fc61c4a5c0025a16117905e431d250b31728d9caf630739ecb",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": false,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔保温杯或琴姨工具袋缺失。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S14-A01",
+      "style_id": "14",
+      "attempt": 1,
+      "prompt_sha256": "47d029c47b5af9842604ac79f080332ad83da31e4218b77ee828d9b7db17376d",
+      "output_path": "benchmarks/outputs/style-14/B09/attempt-01.png",
+      "output_sha256": "dd321b5cc5407ecb97a2add9772da4832471e7701c41d22e0cc880e9869cede5",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": false,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔保温杯或琴姨工具袋缺失。",
+        "周叔头部进入或接触左侧 dialogue 安全区。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S14-A02",
+      "style_id": "14",
+      "attempt": 2,
+      "prompt_sha256": "47d029c47b5af9842604ac79f080332ad83da31e4218b77ee828d9b7db17376d",
+      "output_path": "benchmarks/outputs/style-14/B09/attempt-02.png",
+      "output_sha256": "c124e44dec66e136137bcdc6ee4bcd0e9ee04a252097ab91dd75e6e76fd0ef35",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": false,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔保温杯或琴姨工具袋缺失。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S14-A03",
+      "style_id": "14",
+      "attempt": 3,
+      "prompt_sha256": "47d029c47b5af9842604ac79f080332ad83da31e4218b77ee828d9b7db17376d",
+      "output_path": "benchmarks/outputs/style-14/B09/attempt-03.png",
+      "output_sha256": "490245dc246c2cd0a0f3eecb0d4511d0585ed824194e55bfa816c4a5eeb6d991",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": false,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "周叔保温杯或琴姨工具袋缺失。",
+        "周叔头部进入或接触左侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B09-S18-A01",
+      "style_id": "18",
+      "attempt": 1,
+      "prompt_sha256": "e8f7f3ae51dba754e7f2a1f9c5e1a8e8d7fef02fec19c64f2a5a2eb08fff1c78",
+      "output_path": "benchmarks/outputs/style-18/B09/attempt-01.png",
+      "output_sha256": "c2f873f5a36f37ab8c9d48944ac5ff2102ca2074a3ab69adba7f2b458208688d",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": false,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔保温杯或琴姨工具袋缺失。",
+        "周叔头部进入或接触左侧 dialogue 安全区。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S18-A02",
+      "style_id": "18",
+      "attempt": 2,
+      "prompt_sha256": "e8f7f3ae51dba754e7f2a1f9c5e1a8e8d7fef02fec19c64f2a5a2eb08fff1c78",
+      "output_path": "benchmarks/outputs/style-18/B09/attempt-02.png",
+      "output_sha256": "5fe0d57be5fa17cffea6b0fddf5fdfc0729154a1abc60e7edc3a9c9d8487182e",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": false,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "周叔保温杯或琴姨工具袋缺失。",
+        "周叔头部进入或接触左侧 dialogue 安全区。",
+        "没有同时满足阿迟最高、周叔最宽、琴姨最矮的比例顺序。"
+      ]
+    },
+    {
+      "job_id": "B09-S18-A03",
+      "style_id": "18",
+      "attempt": 3,
+      "prompt_sha256": "e8f7f3ae51dba754e7f2a1f9c5e1a8e8d7fef02fec19c64f2a5a2eb08fff1c78",
+      "output_path": "benchmarks/outputs/style-18/B09/attempt-03.png",
+      "output_sha256": "ed141c2b0db1698db0fc4831c42eaaf03b8db3752456731fc4d38103d562123f",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "周叔头部进入或接触左侧 dialogue 安全区。"
+      ]
+    }
+  ],
+  "unit_counts": {
+    "10": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "14": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "18": {
+      "attempt_count": 3,
+      "successful_count": 0
+    }
+  },
+  "blind_review": {
+    "status": "pending",
+    "scores_recorded_in": "benchmarks/scorecard.csv"
+  },
+  "operator_notes": [
+    "逐张查看原始 PNG，并用带红色 header、紫色 dialogue 覆盖层的 contact sheet 复核安全区。",
+    "successful 仅在九项客观检查全部为 true 时成立；审美分数另由盲评表记录。"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "round_id": "style14-v2",
+  "status": "calibration_only",
+  "base_style_id": "14",
+  "production_name": "dialogue-sketch-v1",
+  "lock_status": "benchmarking",
+  "decision_basis": [
+    "The owner prefers style 14 among the first-round candidates.",
+    "First-round objective QA ranked style 14 highest at 10/36, but it still failed the generation-success hard gate.",
+    "This round changes only identity transport and composition controls; the upstream style recipe remains unchanged."
+  ],
+  "style_recipe": {
+    "source": "vendor/hand-drawn-styles/STYLES.md",
+    "renderer": "vendor/hand-drawn-styles/scripts/render_prompt.py",
+    "overrides_allowed": false
+  },
+  "identity_manifest": "benchmarks/reference-assets/identity-refinement/manifest.json",
+  "reference_sets": {
+    "trio": [
+      "benchmarks/reference-assets/identity-refinement/cast-trio-core.png",
+      "benchmarks/reference-assets/identity-refinement/achi-bag.png",
+      "benchmarks/reference-assets/identity-refinement/zhoushu-thermos.png",
+      "benchmarks/reference-assets/identity-refinement/qinyi-toolbag.png"
+    ],
+    "achi_zhoushu": [
+      "benchmarks/reference-assets/identity-refinement/pair-achi-zhoushu-core.png",
+      "benchmarks/reference-assets/identity-refinement/achi-bag.png",
+      "benchmarks/reference-assets/identity-refinement/zhoushu-thermos.png"
+    ],
+    "achi_qinyi_phone": [
+      "benchmarks/reference-assets/identity-refinement/pair-achi-qinyi-core.png",
+      "benchmarks/reference-assets/identity-refinement/achi-bag.png",
+      "benchmarks/reference-assets/identity-refinement/achi-phone.png",
+      "benchmarks/reference-assets/identity-refinement/qinyi-toolbag.png"
+    ],
+    "achi_qinyi_snips": [
+      "benchmarks/reference-assets/identity-refinement/pair-achi-qinyi-core.png",
+      "benchmarks/reference-assets/identity-refinement/achi-bag.png",
+      "benchmarks/reference-assets/identity-refinement/qinyi-toolbag.png",
+      "benchmarks/reference-assets/identity-refinement/qinyi-snips.png"
+    ],
+    "achi_qinyi_noodle": [
+      "benchmarks/reference-assets/identity-refinement/pair-achi-qinyi-core.png",
+      "benchmarks/reference-assets/identity-refinement/achi-bag.png"
+    ],
+    "achi_noodle": [
+      "benchmarks/reference-assets/identity-refinement/achi-core.png",
+      "benchmarks/reference-assets/identity-refinement/achi-bag.png"
+    ]
+  },
+  "scene_reference_sets": {
+    "B01": "trio",
+    "B02": "achi_zhoushu",
+    "B03": "trio",
+    "B04": "achi_zhoushu",
+    "B05": "achi_qinyi_phone",
+    "B06": "achi_qinyi_snips",
+    "B07": "achi_noodle",
+    "B08": "achi_zhoushu",
+    "B09": "trio",
+    "B10": "trio",
+    "B11": "trio",
+    "B12": "trio"
+  },
+  "stage_regions": {
+    "left": {"x": 0.04, "y": 0.27, "width": 0.53, "height": 0.69},
+    "right": {"x": 0.43, "y": 0.27, "width": 0.53, "height": 0.69}
+  },
+  "scene_stage_sides": {
+    "B01": "left",
+    "B02": "right",
+    "B03": "right",
+    "B04": "left",
+    "B05": "right",
+    "B06": "left",
+    "B07": "right",
+    "B08": "left",
+    "B09": "right",
+    "B10": "left",
+    "B11": "right",
+    "B12": "left"
+  },
+  "attempts_per_scene": 3,
+  "output_root": "benchmarks/refinement-outputs/style-14-v2",
+  "composed_output_root": "benchmarks/refinement-composed/style-14-v2",
+  "composition_background_source": "blank_top_300px_from_each_raw_generation"
+}

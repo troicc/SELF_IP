@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/schemas/episode.schema.json",
+  "title": "坐一会儿再走 episode",
+  "type": "object",
+  "required": [
+    "episode_id",
+    "topic_id",
+    "title",
+    "version",
+    "relationship",
+    "source",
+    "cast",
+    "scene_anchor",
+    "conflict",
+    "ending",
+    "pages",
+    "comment_question"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "episode_id": {"type": "string", "pattern": "^EP-[0-9]{3}$"},
+    "topic_id": {"type": "string", "pattern": "^T[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 30},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "relationship": {"enum": ["family", "romance", "friendship", "self"]},
+    "source": {
+      "type": "object",
+      "required": ["type", "disclosure"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["original_fiction", "authorized_anonymous_adaptation"]},
+        "disclosure": {"type": "string", "minLength": 10},
+        "authorization_record": {"type": "string"}
+      }
+    },
+    "cast": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {"enum": ["achi", "zhoushu", "qinyi"]}
+    },
+    "continuity": {"type": "array", "items": {"type": "string"}, "default": []},
+    "scene_anchor": {
+      "type": "object",
+      "required": ["time", "place", "object", "observable_action"],
+      "additionalProperties": false,
+      "properties": {
+        "time": {"type": "string", "minLength": 2},
+        "place": {"type": "string", "minLength": 2},
+        "object": {"type": "string", "minLength": 1},
+        "observable_action": {"type": "string", "minLength": 4}
+      }
+    },
+    "conflict": {
+      "type": "object",
+      "required": ["surface", "hidden_need", "non_malicious_alternative"],
+      "additionalProperties": false,
+      "properties": {
+        "surface": {"type": "string", "minLength": 4},
+        "hidden_need": {"type": "string", "minLength": 4},
+        "non_malicious_alternative": {"type": "string", "minLength": 4}
+      }
+    },
+    "ending": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["small_action", "rephrased_request", "open_unresolved", "boundary_without_verdict", "repair_attempt"]},
+        "action": {"type": "string", "maxLength": 80},
+        "open_state": {"type": "string", "maxLength": 80}
+      },
+      "anyOf": [
+        {"required": ["action"]},
+        {"required": ["open_state"]}
+      ]
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 1}, "beat": {"const": "cover_question"}}}]},
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 2}, "beat": {"const": "concrete_event"}}}]},
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 3}, "beat": {"const": "emotional_deepening"}}}]},
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 4}, "beat": {"const": "rename_problem"}}}]},
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 5}, "beat": {"const": "pushback"}}}]},
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 6}, "beat": {"const": "small_action_or_open"}}}]},
+        {"allOf": [{"$ref": "#/$defs/page"}, {"properties": {"number": {"const": 7}, "beat": {"const": "landing_and_question"}}}]}
+      ],
+      "items": false
+    },
+    "comment_question": {"type": "string", "minLength": 4, "maxLength": 50}
+  },
+  "$defs": {
+    "textRegion": {
+      "type": "object",
+      "required": ["id", "x", "y", "width", "height"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "x": {"type": "number", "minimum": 0, "maximum": 1},
+        "y": {"type": "number", "minimum": 0, "maximum": 1},
+        "width": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "height": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "align": {"enum": ["left", "center", "right"]}
+      }
+    },
+    "copyLine": {
+      "type": "object",
+      "required": ["speaker", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "speaker": {"enum": ["旁白", "阿迟", "周叔", "琴姨"]},
+        "text": {"type": "string", "minLength": 1, "maxLength": 40},
+        "region_id": {"type": "string"}
+      }
+    },
+    "page": {
+      "type": "object",
+      "required": ["number", "beat", "copy", "image"],
+      "additionalProperties": false,
+      "properties": {
+        "number": {"type": "integer", "minimum": 1, "maximum": 7},
+        "beat": {"type": "string"},
+        "copy": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/copyLine"}
+        },
+        "image": {
+          "type": "object",
+          "required": ["characters", "subject", "composition", "visual_action", "necessary_props", "reserved_text_regions"],
+          "additionalProperties": false,
+          "properties": {
+            "characters": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "uniqueItems": true,
+              "items": {"enum": ["achi", "zhoushu", "qinyi"]}
+            },
+            "subject": {"type": "string", "minLength": 4},
+            "composition": {"type": "string", "minLength": 4},
+            "subject_en": {"type": "string", "minLength": 4},
+            "composition_en": {"type": "string", "minLength": 4},
+            "visual_action": {"type": "string", "minLength": 4},
+            "necessary_props": {"type": "array", "maxItems": 5, "items": {"type": "string"}},
+            "reserved_text_regions": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": {"$ref": "#/$defs/textRegion"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

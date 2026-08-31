@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0.0",
+  "scene_id": "B07",
+  "status": "completed_pending_blind_review",
+  "generated_at": "2026-08-30T13:01:32+08:00",
+  "reviewed_at": "2026-08-30T13:01:32+08:00",
+  "reviewed_by": "operator-objective-qa",
+  "source_job_manifest": "build/benchmarks/jobs.jsonl",
+  "source_prompt_contract": "benchmarks/contracts/B07-initial-v1.json",
+  "attempts": [
+    {
+      "job_id": "B07-S10-A01",
+      "style_id": "10",
+      "attempt": 1,
+      "prompt_sha256": "22585112fa679d812fe4395ff4236da4fd6b1f40f4e3644c12d08d427a26ca0b",
+      "output_path": "benchmarks/outputs/style-10/B07/attempt-01.png",
+      "output_sha256": "663503200038d2511a61ab213f1ac905274cbe90642b01f226dca00ee962c23b",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "两张桌都由人物占座，未清楚呈现空座前的未动面。"
+      ]
+    },
+    {
+      "job_id": "B07-S10-A02",
+      "style_id": "10",
+      "attempt": 2,
+      "prompt_sha256": "22585112fa679d812fe4395ff4236da4fd6b1f40f4e3644c12d08d427a26ca0b",
+      "output_path": "benchmarks/outputs/style-10/B07/attempt-02.png",
+      "output_sha256": "0db1f54df05df4146d3fbb7a8bdf821641c54cbf617e8ec4cb9cc2af21de5eab",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": false,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": false,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "筷子纸套出现红色伪文字。",
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "画面多出调味瓶与第二组筷子容器，且未形成空座与未动面的对应关系。"
+      ]
+    },
+    {
+      "job_id": "B07-S10-A03",
+      "style_id": "10",
+      "attempt": 3,
+      "prompt_sha256": "22585112fa679d812fe4395ff4236da4fd6b1f40f4e3644c12d08d427a26ca0b",
+      "output_path": "benchmarks/outputs/style-10/B07/attempt-03.png",
+      "output_sha256": "2d8f26da8a4bc6dde9721c9dfd34f5f39688a08cc62c9988b82c2f22ee3309db",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "未出现可辨认的空座，未动面落在阿迟桌上。"
+      ]
+    },
+    {
+      "job_id": "B07-S14-A01",
+      "style_id": "14",
+      "attempt": 1,
+      "prompt_sha256": "b4bd71c8f465fefd1900b9a65c9f1ad5e7caee60c83728fb16c6d7277b787cb1",
+      "output_path": "benchmarks/outputs/style-14/B07/attempt-01.png",
+      "output_sha256": "6d4b5e440d5450fb6e27c30ff3de628edc4175cf439d21ef9357ff1e8b67d813",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": false,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "多出两个水杯，且没有画出空座。"
+      ]
+    },
+    {
+      "job_id": "B07-S14-A02",
+      "style_id": "14",
+      "attempt": 2,
+      "prompt_sha256": "b4bd71c8f465fefd1900b9a65c9f1ad5e7caee60c83728fb16c6d7277b787cb1",
+      "output_path": "benchmarks/outputs/style-14/B07/attempt-02.png",
+      "output_sha256": "1a075548f6144c4d7fc5a7e3d79a1ea815d35c6638e6a33907057498054f7fea",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "虽有空凳，但未动面位于琴姨桌前，空座与面没有形成清楚对应。"
+      ]
+    },
+    {
+      "job_id": "B07-S14-A03",
+      "style_id": "14",
+      "attempt": 3,
+      "prompt_sha256": "b4bd71c8f465fefd1900b9a65c9f1ad5e7caee60c83728fb16c6d7277b787cb1",
+      "output_path": "benchmarks/outputs/style-14/B07/attempt-03.png",
+      "output_sha256": "6fa40182e5f67b40640f8f685f0023bb0230b7e1f959f95e3868204787e14482",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "两张桌都由人物占座，没有画出要求的空座。"
+      ]
+    },
+    {
+      "job_id": "B07-S18-A01",
+      "style_id": "18",
+      "attempt": 1,
+      "prompt_sha256": "34b46da0ade95d0cc49bfef4ae9f4a2d2a67e30213e7bcb98639b60a1a585b62",
+      "output_path": "benchmarks/outputs/style-18/B07/attempt-01.png",
+      "output_sha256": "d9dbd87b8ee1d013e758f22d5bb05993a2ef260ee7295a90992447a2ba9eb967",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "空座、未动的面、筷子纸套与筷筒关系最清楚，但琴姨头部进入左侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B07-S18-A02",
+      "style_id": "18",
+      "attempt": 2,
+      "prompt_sha256": "34b46da0ade95d0cc49bfef4ae9f4a2d2a67e30213e7bcb98639b60a1a585b62",
+      "output_path": "benchmarks/outputs/style-18/B07/attempt-02.png",
+      "output_sha256": "62f963ddb5f75ce649194052d268e50ab42967675b330c7a1157168b2d7c378e",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": false
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部进入左侧 dialogue 安全区。",
+        "空椅在阿迟桌侧，但未动面放在琴姨桌前，叙事关系错误。"
+      ]
+    },
+    {
+      "job_id": "B07-S18-A03",
+      "style_id": "18",
+      "attempt": 3,
+      "prompt_sha256": "34b46da0ade95d0cc49bfef4ae9f4a2d2a67e30213e7bcb98639b60a1a585b62",
+      "output_path": "benchmarks/outputs/style-18/B07/attempt-03.png",
+      "output_sha256": "1048fcb6784e927bd02c8ee8b52b0b8c783b120233a583a5c4a28ba1c28c8bfe",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "空座与未动面关系可读，琴姨双手未碰道具；但琴姨头部进入左侧 dialogue 安全区。"
+      ]
+    }
+  ],
+  "unit_counts": {
+    "10": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "14": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "18": {
+      "attempt_count": 3,
+      "successful_count": 0
+    }
+  },
+  "blind_review": {
+    "status": "pending",
+    "scores_recorded_in": "benchmarks/scorecard.csv"
+  },
+  "operator_notes": [
+    "替换后的生活动作本身成立；九张都比被废弃的鞋尖挡伞场景更自然。",
+    "共同硬失败是人物侵入左侧 dialogue 安全区。风格 18 有两张正确保留空座与未动面，风格 10 与 14 均未稳定理解这一关系。"
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "scene_id": "B01",
+  "status": "completed_pending_blind_review",
+  "generated_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_by": "objective-qa-operator",
+  "source_job_manifest": "build/benchmarks/jobs.jsonl",
+  "attempts": [
+    {
+      "job_id": "B01-S10-A01",
+      "style_id": "10",
+      "attempt": 1,
+      "prompt_sha256": "ccbb924ea3745efc92ee3d5fd4fdfd544112cfc58edeae2653933a02751ec2b0",
+      "output_path": "benchmarks/outputs/style-10/B01/attempt-01.png",
+      "output_sha256": "e750669def353d60cdbf96b3b9c8fff54f54a0d04c6e8cfc416112dc522fc107",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S10-A02",
+      "style_id": "10",
+      "attempt": 2,
+      "prompt_sha256": "ccbb924ea3745efc92ee3d5fd4fdfd544112cfc58edeae2653933a02751ec2b0",
+      "output_path": "benchmarks/outputs/style-10/B01/attempt-02.png",
+      "output_sha256": "20e45b5a9be3f3e25e025fd567275dca6d5575e583e4e6b940500602e5ffb644",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S10-A03",
+      "style_id": "10",
+      "attempt": 3,
+      "prompt_sha256": "ccbb924ea3745efc92ee3d5fd4fdfd544112cfc58edeae2653933a02751ec2b0",
+      "output_path": "benchmarks/outputs/style-10/B01/attempt-03.png",
+      "output_sha256": "921f8134cb761d9d768eaf311c4eef46266699163632f23c4a390c4e32372a03",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S14-A01",
+      "style_id": "14",
+      "attempt": 1,
+      "prompt_sha256": "cf3e664fe1fe549224ca7888e75801fc9b7df82c78dbab5bf8123142df93aee3",
+      "output_path": "benchmarks/outputs/style-14/B01/attempt-01.png",
+      "output_sha256": "393eeb917eb0d5044eda89bed98866487d43ecc3c57347de1bb18629d7ea311b",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S14-A02",
+      "style_id": "14",
+      "attempt": 2,
+      "prompt_sha256": "cf3e664fe1fe549224ca7888e75801fc9b7df82c78dbab5bf8123142df93aee3",
+      "output_path": "benchmarks/outputs/style-14/B01/attempt-02.png",
+      "output_sha256": "2624883d3d99791e3f211c5c730ed2420ea351d6e51feff8bfc02a8dce5b3115",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S14-A03",
+      "style_id": "14",
+      "attempt": 3,
+      "prompt_sha256": "cf3e664fe1fe549224ca7888e75801fc9b7df82c78dbab5bf8123142df93aee3",
+      "output_path": "benchmarks/outputs/style-14/B01/attempt-03.png",
+      "output_sha256": "69d1c42b58252e766da4f05d5023cab5e9b67df3a6d9236f78bbadf27fdc34f6",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S18-A01",
+      "style_id": "18",
+      "attempt": 1,
+      "prompt_sha256": "5e97d3075f67d269d6d9edfdabd27302602c5d9840a537b3b4241b38ab635f18",
+      "output_path": "benchmarks/outputs/style-18/B01/attempt-01.png",
+      "output_sha256": "a03eb8dac67bea9e6e35b0aecf469afbb4b5c809089f744f2c5734233ebcca6f",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S18-A02",
+      "style_id": "18",
+      "attempt": 2,
+      "prompt_sha256": "5e97d3075f67d269d6d9edfdabd27302602c5d9840a537b3b4241b38ab635f18",
+      "output_path": "benchmarks/outputs/style-18/B01/attempt-02.png",
+      "output_sha256": "a7d36d3707dc18163b9c41e91df331cda4529370a4199334bd5e4c3704b5ce3c",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B01-S18-A03",
+      "style_id": "18",
+      "attempt": 3,
+      "prompt_sha256": "5e97d3075f67d269d6d9edfdabd27302602c5d9840a537b3b4241b38ab635f18",
+      "output_path": "benchmarks/outputs/style-18/B01/attempt-03.png",
+      "output_sha256": "8c9bc0f58c79c8a06d0594c1f334c9fdb8f4c09951b68a61945cb80b9fcd14cd",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头部或头发进入右侧 dialogue 安全区。"
+      ]
+    }
+  ],
+  "unit_counts": {
+    "10": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "14": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "18": {
+      "attempt_count": 3,
+      "successful_count": 0
+    }
+  },
+  "blind_review": {
+    "status": "pending",
+    "scores_recorded_in": "benchmarks/scorecard.csv"
+  },
+  "operator_notes": [
+    "逐张查看原始 PNG，并用带红色 header、紫色 dialogue 覆盖层的 contact sheet 复核安全区。",
+    "successful 仅在九项客观检查全部为 true 时成立；审美分数另由盲评表记录。"
+  ]
+}

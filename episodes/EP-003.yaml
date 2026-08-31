@@ -1,0 +1,176 @@
+{
+  "episode_id": "EP-003",
+  "topic_id": "T003",
+  "title": "面坨了以后，还回没事吗",
+  "version": "2.1.3",
+  "relationship": "friendship",
+  "source": {
+    "type": "original_fiction",
+    "disclosure": "本故事为原创虚构，人物与情节均为创作。"
+  },
+  "cast": ["achi", "zhoushu", "qinyi"],
+  "continuity": ["阿迟有一位经常临时改约的老朋友；对方只通过消息存在，不进入视觉角色表。", "周叔和琴姨当晚已在社区面馆靠墙的小桌吃面。"],
+  "scene_anchor": {
+    "time": "周五19:05",
+    "place": "老榕里社区面馆靠墙双人桌",
+    "object": "阿迟面前一碗没有动过、已经开始发坨的面，以及对面的空座",
+    "observable_action": "阿迟看完第三次临时取消的消息，把已经打好的‘没事’逐字删掉"
+  },
+  "conflict": {
+    "surface": "朋友第三次在阿迟已经到店后临时取消，阿迟仍习惯回复没事",
+    "hidden_need": "阿迟不是要求对方次次赴约，而是想被提前告知，不再独自承担等待和装作不介意",
+    "non_malicious_alternative": "朋友可能确有临时工作或家庭状况，也可能因为愧疚而只敢发一句简短道歉；原因仍需本人说明"
+  },
+  "ending": {
+    "type": "boundary_without_verdict",
+    "action": "不追问友情真假，只提出一个可观察的请求：下次来不了，尽量在阿迟出门前告诉他"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "beat": "cover_question",
+      "copy": [
+        {"speaker": "旁白", "text": "面已经坨了，还要回‘没事’吗？", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi"],
+        "subject": "社区面馆靠墙双人桌前，阿迟独自坐着，自己面前一碗面已经开始发坨，对面座位空着",
+        "composition": "阿迟位于画面右下，自己的面碗位于下方，对面的空椅清楚可见，顶部左侧完整留白",
+        "subject_en": "Achi sits alone at a two-person table against the wall in the community noodle shop. One bowl of noodles before him has started to clump, and the chair opposite is empty.",
+        "composition_en": "Place Achi in the lower right with his single bowl low in frame and the empty opposite chair clearly visible. Keep the upper-left text region fully clear.",
+        "visual_action": "阿迟握着自己未拆的筷子纸套，视线停在对面的空座上",
+        "necessary_props": ["一碗开始发坨的面", "一双未拆筷子", "阿迟珊瑚橙肩包", "玻璃水杯", "靠墙双人桌", "对面空椅"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.22, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "beat": "concrete_event",
+      "copy": [
+        {"speaker": "旁白", "text": "周五19:05，我的面刚端上来。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "他第三次等我坐下，才说来不了。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi"],
+        "subject": "阿迟低头看放在桌面的无可读内容手机界面，两只手都留在自己这侧；自己的一碗面和一双未拆筷子仍在桌上，对面座位空着",
+        "composition": "手机和桌面位于画面下半部，阿迟上半身完整，自己的面碗、未拆筷子和对面空椅互不重叠，顶部保持干净",
+        "subject_en": "Achi looks down at a phone screen lying on the table with no readable content, keeping both hands on his own side. His single bowl and unopened chopsticks remain on the table, and the chair opposite is empty.",
+        "composition_en": "Keep the phone and tabletop in the lower half with Achi's upper body complete. Separate his bowl, unopened chopsticks, and the empty opposite chair, and leave the top clean.",
+        "visual_action": "阿迟只是低头把消息看完，没有去碰面碗和筷子",
+        "necessary_props": ["一碗面", "一双未拆筷子", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "靠墙双人桌", "对面空椅"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.25, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "beat": "emotional_deepening",
+      "copy": [
+        {"speaker": "阿迟", "text": "我不是非要他来。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "我只是不想每次都最后一个知道。", "region_id": "header"},
+        {"speaker": "周叔", "text": "真是临时有事，也没办法吧。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu"],
+        "subject": "周叔从相邻靠墙桌转过身听阿迟说话，自己的保温杯仍在原桌；阿迟把手机屏幕朝下放在自己碗边",
+        "composition": "两张相邻小桌只露必要部分，两人隔着正常邻桌距离，人物集中在画面下半部，顶部留白",
+        "subject_en": "Zhoushu turns from the neighboring wall table to listen to Achi, while his thermos remains on his own table. Achi places his phone face down beside his bowl.",
+        "composition_en": "Show only the necessary parts of the two neighboring tables. Keep a normal gap between the men, place them in the lower half, and leave the top clear.",
+        "visual_action": "阿迟把手机扣下，周叔拧到一半的杯盖停在手里",
+        "necessary_props": ["两碗面", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "周叔保温杯", "两张靠墙小桌"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.27, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "beat": "rename_problem",
+      "copy": [
+        {"speaker": "琴姨", "text": "临时有事，不等于只能最后说。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "我想问的不是‘你还在乎我吗’。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "是‘下次能不能在我出门前说’。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "琴姨从与周叔共用的相邻桌侧身加入谈话，双手自然放在自己膝上；阿迟留在自己的双人桌，面对两人，对面座位仍空着",
+        "composition": "严格只有两张桌：阿迟一张，周叔和琴姨共用相邻一张；三个人各有一碗面，空椅在阿迟对面，顶部文字区空白",
+        "subject_en": "Qinyi turns slightly from the neighboring table she shares with Zhoushu to join the conversation, keeping both hands naturally on her lap. Achi remains at his own two-person table facing them, with the chair opposite him still empty.",
+        "composition_en": "Show exactly two tables: one for Achi and one shared by Zhoushu and Qinyi. Give each visible person one bowl, keep the empty chair opposite Achi, and clear the top text area.",
+        "visual_action": "琴姨说话时不碰别人的碗，阿迟把自己的筷子平放到碗沿旁",
+        "necessary_props": ["三碗面", "阿迟的一双筷子", "阿迟珊瑚橙肩包", "周叔保温杯", "两张靠墙小桌", "对面空椅"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.28, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 5,
+      "beat": "pushback",
+      "copy": [
+        {"speaker": "阿迟", "text": "可他要是真忙得顾不上呢？", "region_id": "header"},
+        {"speaker": "周叔", "text": "也可能。我说轻了，只替他想了。", "region_id": "header"},
+        {"speaker": "琴姨", "text": "这回先别猜，问一次再说。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "阿迟从自己的双人桌抬眼反问，两只手都离开手机；周叔在与琴姨共用的相邻桌摸着保温杯布套，琴姨等他把话说完",
+        "composition": "严格只有两张桌：阿迟一张，两位长辈共用相邻一张；三个人各有一碗面，三张脸和双手清楚分开，顶部留白",
+        "subject_en": "Achi looks up from his own two-person table and challenges the suggestion, with both hands away from his phone. At the neighboring table he shares with Qinyi, Zhoushu touches the cloth sleeve of his thermos while Qinyi waits for Achi to finish.",
+        "composition_en": "Show exactly two tables: one for Achi and one shared by the elders. Give each visible person one bowl, keep all faces and hands separate, and leave the top open.",
+        "visual_action": "阿迟摊开一只空手，周叔把目光从空座移回阿迟",
+        "necessary_props": ["三碗面", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "周叔保温杯", "两张靠墙小桌", "对面空椅"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.28, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 6,
+      "beat": "small_action_or_open",
+      "copy": [
+        {"speaker": "阿迟", "text": "我回：今天这碗我自己吃。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "下次有变，能在我出门前说一声吗？", "region_id": "header"},
+        {"speaker": "琴姨", "text": "发完先吃。面不替他回。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "阿迟独自在无可读内容的手机界面输入短消息，周叔和琴姨回到相邻桌继续吃面，没有看他的屏幕",
+        "composition": "阿迟与手机位于右下，两位长辈在左下后方各自面对自己的碗，顶部安全区完整",
+        "subject_en": "Achi types a short message on a phone interface with no readable content. Zhoushu and Qinyi return to eating at the neighboring table without looking at his screen.",
+        "composition_en": "Place Achi and the phone in the lower right and the elders farther back in the lower left, each facing their own bowl. Keep the top text-safe region intact.",
+        "visual_action": "阿迟完成输入后把手机放到桌边，另一只手拿起自己的筷子",
+        "necessary_props": ["三碗面", "三双筷子", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "周叔保温杯", "两张靠墙小桌", "对面空椅"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.28, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 7,
+      "beat": "landing_and_question",
+      "copy": [
+        {"speaker": "旁白", "text": "阿迟把手机扣在桌边，吃了第一口。", "region_id": "header"},
+        {"speaker": "旁白", "text": "人没删，‘没事’也没发。", "region_id": "header"},
+        {"speaker": "旁白", "text": "你哪次坐下以后，才收到‘来不了’？", "region_id": "question"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "阿迟把手机屏幕朝下扣在自己碗旁，低头吃第一口面；对面空座仍在，周叔和琴姨在相邻桌安静吃自己的面",
+        "composition": "阿迟夹起的第一口面位于下方清楚可见，三人互不遮挡，对面空座保留，顶部与底部问题区干净",
+        "subject_en": "Achi leaves his phone face down beside his own bowl and takes the first bite of noodles. The opposite seat remains empty while Zhoushu and Qinyi quietly eat their own noodles at the neighboring table.",
+        "composition_en": "Keep Achi's first bite clearly readable low in the frame. Do not overlap the three people, preserve the empty opposite seat, and keep both top and bottom question regions clear.",
+        "visual_action": "阿迟低头吃第一口面，两位长辈没有转头催问，手机仍然扣着",
+        "necessary_props": ["三碗面", "三双筷子", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "周叔保温杯", "两张靠墙小桌", "对面空椅"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.20, "align": "left"},
+          {"id": "question", "x": 0.07, "y": 0.76, "width": 0.86, "height": 0.12, "align": "left"}
+        ]
+      }
+    }
+  ],
+  "comment_question": "你哪次坐下以后，才收到‘来不了’？"
+}

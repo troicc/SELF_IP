@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "scene_id": "B05",
+  "status": "completed_pending_blind_review",
+  "generated_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_by": "objective-qa-operator",
+  "source_job_manifest": "build/benchmarks/jobs.jsonl",
+  "attempts": [
+    {
+      "job_id": "B05-S10-A01",
+      "style_id": "10",
+      "attempt": 1,
+      "prompt_sha256": "66c80c6ce75c1a9ad7bbf4c86ed2bed456ca7f7581ae31c163b91ebb8b0241c3",
+      "output_path": "benchmarks/outputs/style-10/B05/attempt-01.png",
+      "output_sha256": "3a73e9f355d76661209b265ae71be042683caad11ace8c7fd518b684b5ad117f",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S10-A02",
+      "style_id": "10",
+      "attempt": 2,
+      "prompt_sha256": "66c80c6ce75c1a9ad7bbf4c86ed2bed456ca7f7581ae31c163b91ebb8b0241c3",
+      "output_path": "benchmarks/outputs/style-10/B05/attempt-02.png",
+      "output_sha256": "daee85de1f1f8d350ab24847fbfff8b22796fa24696b7c551753ed3e67120f88",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S10-A03",
+      "style_id": "10",
+      "attempt": 3,
+      "prompt_sha256": "66c80c6ce75c1a9ad7bbf4c86ed2bed456ca7f7581ae31c163b91ebb8b0241c3",
+      "output_path": "benchmarks/outputs/style-10/B05/attempt-03.png",
+      "output_sha256": "dbc338fde4d549a1ffce5e5f76304c252952ed28da1722e4f65b7eecb8ac1fe2",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S14-A01",
+      "style_id": "14",
+      "attempt": 1,
+      "prompt_sha256": "a9d3e8aa684d4053f26667b7b22db0782ec911ebf2d72a15ee3d58571f87abec",
+      "output_path": "benchmarks/outputs/style-14/B05/attempt-01.png",
+      "output_sha256": "7216a164546206606d8357354c60975eca9c82f7d8d6c98832300fc27d7ef54a",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S14-A02",
+      "style_id": "14",
+      "attempt": 2,
+      "prompt_sha256": "a9d3e8aa684d4053f26667b7b22db0782ec911ebf2d72a15ee3d58571f87abec",
+      "output_path": "benchmarks/outputs/style-14/B05/attempt-02.png",
+      "output_sha256": "01ba9c14c87f4e34d920c3e5746da2633f631231969d1b76394960aa6ff75943",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S14-A03",
+      "style_id": "14",
+      "attempt": 3,
+      "prompt_sha256": "a9d3e8aa684d4053f26667b7b22db0782ec911ebf2d72a15ee3d58571f87abec",
+      "output_path": "benchmarks/outputs/style-14/B05/attempt-03.png",
+      "output_sha256": "ef8c9f3e16ec700e917af209578a9e8ff3c908f8513c8fa22d8dee908950f5bc",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S18-A01",
+      "style_id": "18",
+      "attempt": 1,
+      "prompt_sha256": "05b5a44de99cb90111712a33f71943f301b23db50d0c9c567d4e9e33980ff447",
+      "output_path": "benchmarks/outputs/style-18/B05/attempt-01.png",
+      "output_sha256": "c1ab6bc139844d3cb0673b31a190ff71a421c4b0ec2fdc5e79ad43f47d98b02e",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": false,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "琴姨头发进入左侧 dialogue 安全区。"
+      ]
+    },
+    {
+      "job_id": "B05-S18-A02",
+      "style_id": "18",
+      "attempt": 2,
+      "prompt_sha256": "05b5a44de99cb90111712a33f71943f301b23db50d0c9c567d4e9e33980ff447",
+      "output_path": "benchmarks/outputs/style-18/B05/attempt-02.png",
+      "output_sha256": "83cf85d23da2c4e6a01f1c961d591cf941cb52586bb230674d6b2cb02a137fe3",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B05-S18-A03",
+      "style_id": "18",
+      "attempt": 3,
+      "prompt_sha256": "05b5a44de99cb90111712a33f71943f301b23db50d0c9c567d4e9e33980ff447",
+      "output_path": "benchmarks/outputs/style-18/B05/attempt-03.png",
+      "output_sha256": "1e3976c62208d8bfa6be16af4f4d8eb25e4fabcb00e0d6f4f1f1793ae02e08ce",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    }
+  ],
+  "unit_counts": {
+    "10": {
+      "attempt_count": 3,
+      "successful_count": 3
+    },
+    "14": {
+      "attempt_count": 3,
+      "successful_count": 3
+    },
+    "18": {
+      "attempt_count": 3,
+      "successful_count": 2
+    }
+  },
+  "blind_review": {
+    "status": "pending",
+    "scores_recorded_in": "benchmarks/scorecard.csv"
+  },
+  "operator_notes": [
+    "逐张查看原始 PNG，并用带红色 header、紫色 dialogue 覆盖层的 contact sheet 复核安全区。",
+    "successful 仅在九项客观检查全部为 true 时成立；审美分数另由盲评表记录。"
+  ]
+}

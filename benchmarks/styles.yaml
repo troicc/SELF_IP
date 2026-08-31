@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "upstream": {
+    "repository": "https://github.com/threerocks/hand-drawn-styles.git",
+    "path": "vendor/hand-drawn-styles",
+    "pinned_commit": "9f150d9f4c90f3a4ace78a751d2d8263d818220c",
+    "renderer": "vendor/hand-drawn-styles/scripts/render_prompt.py",
+    "recipe_source": "vendor/hand-drawn-styles/STYLES.md"
+  },
+  "candidates": [
+    {
+      "style_id": "10",
+      "alias": "emo-sketch",
+      "prompt_language": "zh",
+      "style_references": [
+        {
+          "path": "vendor/hand-drawn-styles/examples/10-emo-sketch.png",
+          "role": "style-only",
+          "instruction": "只参考线条、用色、留白和纸面语言；不复制参考图的人物、服装、站位或情节。"
+        }
+      ],
+      "renderer_vars": {
+        "橙色关键物": "阿迟的珊瑚橙旧帆布肩包",
+        "文字": "不加任何文字"
+      }
+    },
+    {
+      "style_id": "14",
+      "alias": "nordic-storybook",
+      "prompt_language": "en",
+      "style_references": [
+        {
+          "path": "vendor/hand-drawn-styles/examples/14-nordic-storybook.png",
+          "role": "style-only",
+          "instruction": "Use only the visual language: gouache texture, palette, proportions, paper and negative space. Do not copy its character identity, outfit, pose or story."
+        }
+      ],
+      "renderer_vars": {
+        "纸底色": "warm off-white (≈#F8F7F2)",
+        "光影": "One single soft pale-blue oval shadow under the feet, no other shading or shadows anywhere."
+      }
+    },
+    {
+      "style_id": "18",
+      "alias": "warm-flat-storybook",
+      "prompt_language": "en",
+      "style_references": [
+        {
+          "path": "vendor/hand-drawn-styles/examples/18-warm-flat-storybook.png",
+          "role": "style-only",
+          "instruction": "Use only the visual language: shape system, palette, proportions, texture and negative space. Do not copy its character identity, outfit, pose or story."
+        }
+      ],
+      "renderer_vars": {
+        "文字": "No text anywhere."
+      }
+    }
+  ]
+}
+

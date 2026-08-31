@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "B11-initial-v1",
+  "scene_id": "B11",
+  "status": "superseded",
+  "superseded_reason": "初轮没有在 subject 中明确琴姨工具袋的位置，随后补成靠在她自己脚边，并强调阿迟的包也只在自己脚边，以减少固定道具换主。保留本合同验证初轮 PNG；新生成使用 benchmarks/scenes.yaml 当前版本。",
+  "source_snapshot": {
+    "title": "杯盖扣反后的三种笑",
+    "subject_zh": "周叔把固定保温杯盖倒扣在长椅上，低头摸杯套露出不好意思的笑；琴姨看见后短短笑出声，双手仍放在自己膝上；阿迟只抬左嘴角笑，珊瑚橙旧帆布包放在脚边",
+    "subject_en": "Uncle Zhou has placed the fixed thermos lid upside down on the bench and looks down while touching the cloth sleeve with a sheepish smile; Aunt Qin notices and gives a brief laugh while both hands stay on her own knees; Achi smiles with only the left corner of his mouth, with his worn coral-orange canvas shoulder bag by his feet",
+    "composition_zh": "三人坐在右下且脸不重叠，倒扣杯盖在周叔身边清楚可见；顶部与左侧留空",
+    "composition_en": "the three seated in the lower-right with separated faces, the upside-down lid clearly visible beside Uncle Zhou, leaving the top and left reserved regions empty",
+    "necessary_props": ["周叔保温杯及杯盖", "琴姨工具袋", "阿迟橙色帆布包", "社区长椅"],
+    "visual_action": "杯盖留在长椅上且没人举起，测试三张不同笑脸和一个自然小失误",
+    "reserved_text_regions": [
+      {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.18},
+      {"id": "dialogue", "x": 0.07, "y": 0.25, "width": 0.31, "height": 0.2}
+    ]
+  },
+  "job_prompt_sha256_by_style": {
+    "10": "39e700811027b77f7b8fb67cd2f812002f2920d25be2b3061c4951ec3725dba6",
+    "14": "cfc610a2d7f7948fba4486e88387fb2c84019e8674bb7d694bbdb668ae78fab1",
+    "18": "cb08cf773f436181f0cdcb0f7c268361fce0011d8ed13f70765cbd359e71c6eb"
+  }
+}

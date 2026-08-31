@@ -1,0 +1,177 @@
+{
+  "episode_id": "EP-002",
+  "topic_id": "T002",
+  "title": "箱子搬进去以前",
+  "version": "2.0.0",
+  "relationship": "romance",
+  "source": {
+    "type": "original_fiction",
+    "disclosure": "本故事为原创虚构，人物与情节均为创作。"
+  },
+  "cast": ["achi", "zhoushu", "qinyi"],
+  "continuity": ["阿迟准备和未命名性别的伴侣开始同住；周叔与琴姨顺路帮忙搬最后几箱。"],
+  "scene_anchor": {
+    "time": "周六17:20",
+    "place": "阿迟新住处的单元门口",
+    "object": "用纯色圆点区分房间的搬家纸箱",
+    "observable_action": "阿迟看完伴侣只问先搬哪箱的消息，把已经抬起的厨房箱又放回门槛外"
+  },
+  "conflict": {
+    "surface": "阿迟说自己有点怕同住，伴侣却只回复先搬哪只箱子",
+    "hidden_need": "阿迟不是反悔，而是想在进门前确认两个人可以谈同住后的冲突和暂停方式",
+    "non_malicious_alternative": "伴侣可能把继续搬家当成确定关系的行动回应，也可能正在楼下搬东西，无意忽略那句害怕"
+  },
+  "ending": {
+    "type": "rephrased_request",
+    "action": "先搬一只箱子，同时提出今晚只用十分钟约定吵架时如何暂停，不试图一次谈完同住生活"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "beat": "cover_question",
+      "copy": [
+        {"speaker": "旁白", "text": "箱子都进门了，那句‘我有点怕’呢？", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi"],
+        "subject": "阿迟站在半开的单元门前，脚边是两只只有纯色圆点、没有文字的搬家纸箱，手机握在身侧",
+        "composition": "阿迟和纸箱位于画面右下，门框竖线避开顶部文字区，人物全身和门槛完整可见",
+        "subject_en": "Achi stands at a half-open apartment door. Two moving boxes marked only with solid color dots and no text sit by his feet, and he holds his phone down at his side.",
+        "composition_en": "Place Achi and the boxes in the lower right. Keep the vertical door frame away from the top text area, and show his full body and the threshold clearly.",
+        "visual_action": "阿迟一只手扶着门框，另一只手垂着手机，没有继续搬箱",
+        "necessary_props": ["两只无字搬家纸箱", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "单元门"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.22, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "beat": "concrete_event",
+      "copy": [
+        {"speaker": "旁白", "text": "周六下午五点二十，单元门口。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "我说怕住一起，他只问：厨房箱先搬吗？", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi"],
+        "subject": "门槛外的阿迟弯腰扶住一只带暖黄色圆点的无字纸箱，手机平放在箱顶且屏幕没有可读内容",
+        "composition": "纸箱与阿迟在画面下半部，门内只露出朴素空地面，不展示完整室内，顶部大块留白",
+        "subject_en": "Outside the threshold, Achi bends and steadies a blank moving box marked with a warm yellow dot. His phone lies flat on top with no readable content.",
+        "composition_en": "Keep Achi and the box in the lower half. Show only a plain patch of floor inside, not a full interior, and leave a large clear area at the top.",
+        "visual_action": "阿迟把纸箱抬离地面一点，又原样放回门外",
+        "necessary_props": ["暖黄色圆点无字纸箱", "阿迟深藏青手机", "阿迟珊瑚橙肩包", "单元门"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.25, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "beat": "emotional_deepening",
+      "copy": [
+        {"speaker": "阿迟", "text": "我不是反悔。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "我怕住一起后，连吵架都没地方躲。", "region_id": "header"},
+        {"speaker": "周叔", "text": "也可能，他以为继续搬就是回答。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu"],
+        "subject": "周叔在楼道里放下一只小号无字纸箱，保温杯挂在另一只手上；阿迟靠在门边面对他",
+        "composition": "两个人隔着一只落地纸箱交谈并集中在下半部，楼道背景简单，顶部文字区清空",
+        "subject_en": "In the corridor, Zhoushu sets down a small blank moving box while holding his thermos in the other hand. Achi leans beside the doorway and faces him.",
+        "composition_en": "Let the two men talk across one box resting on the floor, all within the lower half. Keep the corridor simple and the top text region empty.",
+        "visual_action": "周叔直起腰后没有再搬下一箱，阿迟用鞋后跟轻轻抵住门让它保持半开",
+        "necessary_props": ["小号无字搬家纸箱", "阿迟珊瑚橙肩包", "周叔保温杯", "单元门"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.27, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "beat": "rename_problem",
+      "copy": [
+        {"speaker": "琴姨", "text": "搬哪箱，没回答你怕什么。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "我想先约好：吵架时，谁能出去多久。", "region_id": "header"},
+        {"speaker": "周叔", "text": "我刚才说轻了。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "琴姨从楼梯方向走到门边，横向工具袋拎在身侧；阿迟和周叔停在原地，两只纸箱仍分别在门内外",
+        "composition": "三人沿门口自然错开站立且互不遮挡，纸箱靠下，门框和人物都避开顶部留白",
+        "subject_en": "Qinyi approaches the doorway from the stairs with her horizontal tool bag at her side. Achi and Zhoushu remain where they are, with one box inside and one outside the threshold.",
+        "composition_en": "Stagger the three people naturally around the doorway without overlap. Keep both boxes low and all people and door-frame lines out of the clear top region.",
+        "visual_action": "琴姨把工具袋靠墙放稳，周叔摸一下保温杯布套，阿迟仍扶着半开的门",
+        "necessary_props": ["两只无字搬家纸箱", "阿迟珊瑚橙肩包", "周叔保温杯", "琴姨工具袋", "单元门"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.27, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 5,
+      "beat": "pushback",
+      "copy": [
+        {"speaker": "阿迟", "text": "没开始就谈吵架，会不会很扫兴？", "region_id": "header"},
+        {"speaker": "琴姨", "text": "会。也可能很有用。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "你这回答跟没答一样。", "region_id": "header"},
+        {"speaker": "琴姨", "text": "那就算我不知道，得问跟你住的人。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "阿迟坐在一只结实的封好纸箱上看向琴姨，琴姨靠墙站着摊开空手，周叔在旁边安静听",
+        "composition": "阿迟坐姿和两位长辈站姿都完整出现在画面下半部，保留正常谈话距离，顶部空白",
+        "subject_en": "Achi sits on one sturdy sealed moving box and looks at Qinyi. Qinyi stands by the wall with one empty hand open, while Zhoushu listens quietly nearby.",
+        "composition_en": "Show Achi's seated pose and both elders' standing poses fully in the lower half at a normal conversational distance. Leave the top clear.",
+        "visual_action": "阿迟抬头直问，琴姨短暂摊手后把手放回身侧",
+        "necessary_props": ["封好的无字搬家纸箱", "阿迟珊瑚橙肩包", "周叔保温杯", "琴姨工具袋"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.29, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 6,
+      "beat": "small_action_or_open",
+      "copy": [
+        {"speaker": "阿迟", "text": "我回：厨房箱先搬。", "region_id": "header"},
+        {"speaker": "阿迟", "text": "今晚留十分钟，先约一下吵架时怎么暂停？", "region_id": "header"},
+        {"speaker": "阿迟", "text": "只谈暂停，不判谁对。", "region_id": "header"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "阿迟坐在纸箱边独自编辑无可读内容的手机消息，周叔和琴姨靠墙等待，都没有看屏幕",
+        "composition": "手机和阿迟位于右下，两位长辈在左下后方，门口与纸箱形成朴素背景，顶部安全区完整",
+        "subject_en": "Achi sits beside a moving box and edits a phone message with no readable content. Zhoushu and Qinyi wait by the wall without looking at the screen.",
+        "composition_en": "Place Achi and the phone in the lower right and the elders farther back in the lower left. Use the doorway and boxes as a plain background, keeping the top text-safe region intact.",
+        "visual_action": "阿迟用一根拇指完成短消息，停一下后锁住屏幕",
+        "necessary_props": ["阿迟深藏青手机", "两只无字搬家纸箱", "阿迟珊瑚橙肩包", "周叔保温杯", "琴姨工具袋"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.28, "align": "left"}
+        ]
+      }
+    },
+    {
+      "number": 7,
+      "beat": "landing_and_question",
+      "copy": [
+        {"speaker": "旁白", "text": "阿迟先搬了厨房箱。", "region_id": "header"},
+        {"speaker": "旁白", "text": "第二只还在门外，等那十分钟的回答。", "region_id": "header"},
+        {"speaker": "旁白", "text": "你和谁最需要先约一个‘暂停规则’？", "region_id": "question"}
+      ],
+      "image": {
+        "characters": ["achi", "zhoushu", "qinyi"],
+        "subject": "阿迟从门内放下带暖黄色圆点的纸箱，另一只无字纸箱仍在门外；周叔和琴姨各自拿起随身物准备离开",
+        "composition": "门槛横贯画面下方，门内外各一只箱子，三人动作互不交叉，顶部和底部问题区留白",
+        "subject_en": "Inside the doorway, Achi sets down the moving box marked with a warm yellow dot while another blank box remains outside. Zhoushu and Qinyi pick up their own belongings to leave.",
+        "composition_en": "Let the threshold cross the lower area with one box on each side. Keep the three people's actions separate, and preserve both the top and bottom question regions.",
+        "visual_action": "阿迟松开刚放稳的纸箱，回头看一眼仍在门外的另一只箱子",
+        "necessary_props": ["两只无字搬家纸箱", "阿迟珊瑚橙肩包", "周叔保温杯", "琴姨工具袋", "单元门"],
+        "reserved_text_regions": [
+          {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.20, "align": "left"},
+          {"id": "question", "x": 0.07, "y": 0.76, "width": 0.86, "height": 0.12, "align": "left"}
+        ]
+      }
+    }
+  ],
+  "comment_question": "你和谁最需要先约一个‘暂停规则’？"
+}

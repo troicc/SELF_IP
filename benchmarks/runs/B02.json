@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "scene_id": "B02",
+  "status": "completed_pending_blind_review",
+  "generated_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_at": "2026-08-30T15:11:59+08:00",
+  "reviewed_by": "objective-qa-operator",
+  "source_job_manifest": "build/benchmarks/jobs.jsonl",
+  "attempts": [
+    {
+      "job_id": "B02-S10-A01",
+      "style_id": "10",
+      "attempt": 1,
+      "prompt_sha256": "b3ab1d074d11a77a4c28079a40de3024b4a713b630e7717d3868d5ef1f3706e8",
+      "output_path": "benchmarks/outputs/style-10/B02/attempt-01.png",
+      "output_sha256": "0f3392756434ae26d4eea8e510fdbadf7cdf6f7f5df48b7e5fb8e25ad4ae6f66",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": false,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "阿迟手里多出本场未要求的手机。"
+      ]
+    },
+    {
+      "job_id": "B02-S10-A02",
+      "style_id": "10",
+      "attempt": 2,
+      "prompt_sha256": "b3ab1d074d11a77a4c28079a40de3024b4a713b630e7717d3868d5ef1f3706e8",
+      "output_path": "benchmarks/outputs/style-10/B02/attempt-02.png",
+      "output_sha256": "69825ef8bc85ad49c9491c8b6526a0c10b993b69f0903d97be29be0acafece7e",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": false,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "阿迟手里多出本场未要求的手机。"
+      ]
+    },
+    {
+      "job_id": "B02-S10-A03",
+      "style_id": "10",
+      "attempt": 3,
+      "prompt_sha256": "b3ab1d074d11a77a4c28079a40de3024b4a713b630e7717d3868d5ef1f3706e8",
+      "output_path": "benchmarks/outputs/style-10/B02/attempt-03.png",
+      "output_sha256": "e3a0d5aff79208c34a5f484f7ed942f6ae6490a93a85db28e778938f9a112aa7",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": false,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "阿迟手里多出本场未要求的手机。"
+      ]
+    },
+    {
+      "job_id": "B02-S14-A01",
+      "style_id": "14",
+      "attempt": 1,
+      "prompt_sha256": "59f871d9b515a0bc8cf9164c65c9e45cfb68b2f7032dd05a8670c9d59417850e",
+      "output_path": "benchmarks/outputs/style-14/B02/attempt-01.png",
+      "output_sha256": "f66d5a8d72293e813629935dc5b2025f45a711a134b9ed9074139979b093a924",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B02-S14-A02",
+      "style_id": "14",
+      "attempt": 2,
+      "prompt_sha256": "59f871d9b515a0bc8cf9164c65c9e45cfb68b2f7032dd05a8670c9d59417850e",
+      "output_path": "benchmarks/outputs/style-14/B02/attempt-02.png",
+      "output_sha256": "3a79eb6ec8a9ed66907c58cfd40e2585904a8d2cc13ce0ae3c3b1185e4384ae3",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B02-S14-A03",
+      "style_id": "14",
+      "attempt": 3,
+      "prompt_sha256": "59f871d9b515a0bc8cf9164c65c9e45cfb68b2f7032dd05a8670c9d59417850e",
+      "output_path": "benchmarks/outputs/style-14/B02/attempt-03.png",
+      "output_sha256": "6f0a3b312767f33f650defad664902e1cb5a025ce009f203723276021686fe38",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B02-S18-A01",
+      "style_id": "18",
+      "attempt": 1,
+      "prompt_sha256": "960ae9965adb102f90fa45b3fcd121d816ad7662407aa5e88542783ef984917d",
+      "output_path": "benchmarks/outputs/style-18/B02/attempt-01.png",
+      "output_sha256": "19569d95c5eccd4bb9b4a8aea37eca758b6294473292ba3a354ca346d7b6f53a",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": false,
+        "scene_specific_constraints_met": true
+      },
+      "successful": false,
+      "notes": [
+        "阿迟手里多出本场未要求的手机。"
+      ]
+    },
+    {
+      "job_id": "B02-S18-A02",
+      "style_id": "18",
+      "attempt": 2,
+      "prompt_sha256": "960ae9965adb102f90fa45b3fcd121d816ad7662407aa5e88542783ef984917d",
+      "output_path": "benchmarks/outputs/style-18/B02/attempt-02.png",
+      "output_sha256": "a7a16866243ee5859fe6a12f0e3c63136eff5ef3a5b52aeaeb57f31b71485284",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    },
+    {
+      "job_id": "B02-S18-A03",
+      "style_id": "18",
+      "attempt": 3,
+      "prompt_sha256": "960ae9965adb102f90fa45b3fcd121d816ad7662407aa5e88542783ef984917d",
+      "output_path": "benchmarks/outputs/style-18/B02/attempt-03.png",
+      "output_sha256": "57f6c08a53832c810bdd68c3b1ead968ac7363fea0bdac6cfc81c39eea942b58",
+      "width": 1086,
+      "height": 1448,
+      "checks": {
+        "correct_character_count": true,
+        "usable_anatomy": true,
+        "fixed_identity_and_clothing": true,
+        "required_props_complete": true,
+        "no_text_or_pseudotext": true,
+        "header_safe_region_clear": true,
+        "dialogue_safe_region_clear": true,
+        "no_duplicate_or_extra_elements": true,
+        "scene_specific_constraints_met": true
+      },
+      "successful": true,
+      "notes": [
+        "九项客观检查通过。"
+      ]
+    }
+  ],
+  "unit_counts": {
+    "10": {
+      "attempt_count": 3,
+      "successful_count": 0
+    },
+    "14": {
+      "attempt_count": 3,
+      "successful_count": 3
+    },
+    "18": {
+      "attempt_count": 3,
+      "successful_count": 2
+    }
+  },
+  "blind_review": {
+    "status": "pending",
+    "scores_recorded_in": "benchmarks/scorecard.csv"
+  },
+  "operator_notes": [
+    "逐张查看原始 PNG，并用带红色 header、紫色 dialogue 覆盖层的 contact sheet 复核安全区。",
+    "successful 仅在九项客观检查全部为 true 时成立；审美分数另由盲评表记录。"
+  ]
+}

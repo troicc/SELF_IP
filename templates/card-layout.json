@@ -1,0 +1,24 @@
+{
+  "canvas": {"width": 1080, "height": 1440, "aspect_ratio": "3:4"},
+  "background": "#FDF9F2",
+  "text": {
+    "font_family": "PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif",
+    "speaker_size": 28,
+    "body_size": 42,
+    "line_height": 1.45,
+    "color": "#172F4E",
+    "max_chars_per_line": 18
+  },
+  "footer": {
+    "height": 58,
+    "font_size": 18,
+    "color": "#586273",
+    "show_source_on_page": 7,
+    "forbid_ai_assistance_label": true
+  },
+  "image_policy": {
+    "mode": "background_under_local_text",
+    "image_contains_text": false,
+    "placeholder_color": "#EEF0ED"
+  }
+}

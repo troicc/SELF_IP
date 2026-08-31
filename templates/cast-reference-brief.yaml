@@ -1,0 +1,9 @@
+{
+  "character_id": "achi",
+  "role": "identity-only",
+  "source": "ip/CAST_BIBLE.yaml",
+  "required_views": ["front_full_body", "three_quarter_full_body", "side_profile", "neutral_face", "worried_face", "defensive_smile", "fixed_prop_closeup"],
+  "background": "plain neutral reference-sheet background",
+  "text_in_image": false,
+  "prohibited": ["style anchor role", "unlisted outfit", "unlisted prop", "decorative scenery"]
+}

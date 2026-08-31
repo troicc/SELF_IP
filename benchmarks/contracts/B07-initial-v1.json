@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "B07-initial-v1",
+  "scene_id": "B07",
+  "status": "superseded",
+  "superseded_reason": "初轮使用阿迟把未拆筷子放回筷筒、琴姨坐在邻桌的双人版本。复盘后认定琴姨和筷筒都不是这个空座瞬间所必需，当前场景已改为阿迟独自面对坨面与空椅。保留本合同只验证初轮三风格比较数据；新生成一律使用 benchmarks/scenes.yaml 当前版本。",
+  "source_snapshot": {
+    "title": "把未拆的筷子放回去",
+    "subject_zh": "社区面馆两张相邻小桌旁，阿迟坐在右下，把对面一双仍套着空白纸套的筷子放回搪瓷筷筒；空座前留着一碗未动的面；琴姨坐在相邻桌，双手留在自己膝上；珊瑚橙旧帆布包贴着阿迟椅脚",
+    "subject_en": "At two neighboring small tables in the community noodle shop, Achi sits in the lower-right and returns one pair of chopsticks still inside a blank paper sleeve to an enamel chopstick holder; an untouched bowl of noodles remains before the empty opposite seat; Aunt Qin sits at the neighboring table with both hands on her own lap; Achi's worn coral-orange canvas shoulder bag rests against his chair leg",
+    "composition_zh": "两张相邻小桌和两人位于画面下半部，空座与未动的面清楚可见；顶部与左侧留空",
+    "composition_en": "two neighboring small tables and both people in the lower half, with the empty seat and untouched bowl clearly visible, leaving the top and left reserved regions empty",
+    "necessary_props": ["一碗未动的面", "一双空白纸套筷子", "搪瓷筷筒", "阿迟橙色帆布包"],
+    "visual_action": "只有阿迟拿一双未拆筷子并放入筷筒，琴姨不伸手；测试手与小物件关系、邻桌距离和空座叙事",
+    "reserved_text_regions": [
+      {"id": "header", "x": 0.07, "y": 0.05, "width": 0.86, "height": 0.18},
+      {"id": "dialogue", "x": 0.07, "y": 0.25, "width": 0.31, "height": 0.2}
+    ]
+  },
+  "job_prompt_sha256_by_style": {
+    "10": "22585112fa679d812fe4395ff4236da4fd6b1f40f4e3644c12d08d427a26ca0b",
+    "14": "b4bd71c8f465fefd1900b9a65c9f1ad5e7caee60c83728fb16c6d7277b787cb1",
+    "18": "34b46da0ade95d0cc49bfef4ae9f4a2d2a67e30213e7bcb98639b60a1a585b62"
+  }
+}
