@@ -1,28 +1,202 @@
 {
-  "canvas": "4:3",
-  "background": "warm near-white paper matching #F8F2E8, seamless with the card background and without any visible rectangular border",
-  "style": "quiet Scandinavian hand-painted storybook portrait, loose indigo pencil-and-ink linework, restrained matte gouache wash, subtle paper tooth, imperfect human line quality, adult emotional restraint, denim blue and mustard yellow with one small coral-orange identity accent, intimate and elegant rather than cute",
+  "canvas": "3:4",
+  "background": "warm near-white handmade paper matching #FFF9EB, seamless with the card; no rectangular illustration edge",
+  "style": "lively intimate hand-painted storybook conversation scene, loose indigo pencil lines, soft matte gouache and watercolor, visible paper tooth, slightly imperfect human-drawn edges, expressive adult faces, light airy negative space, denim blue, warm mustard, coral orange, mint and pale sky blue; playful but not childish, no polished corporate vector look",
   "identity": {
     "achi": "Achi, a slim 27-year-old Chinese man with a narrow oval face, short slightly messy deep-navy hair, faded denim-blue overshirt over a warm cream T-shirt, one coral-orange shoulder strap",
     "zhoushu": "Uncle Zhou, a 56-year-old Chinese man with a broad gentle face, short silver-grey hair and a receding hairline, mustard knitted vest over a warm cream shirt"
   },
-  "global_negative": "no text, no letters, no speech bubble, no phone screen, no furniture, no table, no chair, no room, no street, no full body, no legs, no detailed hands, no complex gesture, no extra person, no crowd, no decorative background, no hard rectangular image edge, no mismatched paper patch, no 3D, no glossy digital painting, no anime eyes, no chibi proportions",
+  "global_negative": "no text, no letters, no speech bubble, no phone screen, no furniture, no table, no chair, no room, no street, no full body, no legs, no detailed hands, no complex gesture, no extra person, no crowd, no decorative clutter, no hard rectangular edge, no mismatched paper patch, no 3D, no glossy digital painting, no anime eyes, no chibi proportions",
   "plates": {
     "quiet": {
-      "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot, Achi on the left looking slightly down, Uncle Zhou on the right turned toward him and listening, both hands outside the crop, calm negative space"
+      "characters": [
+        "achi",
+        "zhoushu"
+      ],
+      "direction": "full 3:4 page, both characters as waist-up portraits in the lower half; Achi at lower left looks down with a restrained expression, Uncle Zhou at lower right turns toward him and listens; hands outside the crop; leave generous clean space above and between their faces for hand-drawn dialogue balloons",
+      "mouths": {
+        "阿迟": [
+          495,
+          965
+        ],
+        "周叔": [
+          915,
+          1005
+        ]
+      },
+      "slots": {
+        "cover-main": {
+          "x": 55,
+          "y": 500,
+          "w": 675,
+          "max_h": 285
+        },
+        "achi-main": {
+          "x": 55,
+          "y": 555,
+          "w": 480,
+          "max_h": 260
+        },
+        "zhoushu-main": {
+          "x": 560,
+          "y": 555,
+          "w": 455,
+          "max_h": 250
+        },
+        "caption": {
+          "x": 285,
+          "y": 105,
+          "w": 510,
+          "max_h": 125
+        }
+      }
     },
     "achi-talk": {
-      "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot, Achi is the clear focus and has just started speaking, restrained and a little embarrassed; Uncle Zhou appears only as a quiet listener, hands outside the crop"
+      "characters": [
+        "achi",
+        "zhoushu"
+      ],
+      "direction": "full 3:4 page, Achi is larger at lower left and is speaking with a hesitant half-finished expression; Uncle Zhou is smaller at lower right, listening; both hands outside the crop; keep the upper left and upper right open for two dialogue balloons",
+      "mouths": {
+        "阿迟": [
+          493,
+          972
+        ],
+        "周叔": [
+          1000,
+          1005
+        ]
+      },
+      "slots": {
+        "achi-main": {
+          "x": 45,
+          "y": 475,
+          "w": 575,
+          "max_h": 315
+        },
+        "achi-small": {
+          "x": 55,
+          "y": 620,
+          "w": 400,
+          "max_h": 210
+        },
+        "zhoushu-main": {
+          "x": 555,
+          "y": 505,
+          "w": 455,
+          "max_h": 255
+        },
+        "zhoushu-small": {
+          "x": 665,
+          "y": 635,
+          "w": 335,
+          "max_h": 175
+        },
+        "caption": {
+          "x": 310,
+          "y": 100,
+          "w": 460,
+          "max_h": 118
+        }
+      }
     },
     "zhoushu-talk": {
-      "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot, Uncle Zhou is the clear focus speaking gently without teaching; Achi listens in three-quarter view, hands outside the crop"
+      "characters": [
+        "achi",
+        "zhoushu"
+      ],
+      "direction": "full 3:4 page, Uncle Zhou is larger at lower right and speaks gently without a teaching pose; Achi is smaller at lower left listening in three-quarter view; hands outside the crop; keep lively asymmetrical empty space around their faces for dialogue balloons",
+      "mouths": {
+        "阿迟": [
+          305,
+          990
+        ],
+        "周叔": [
+          942,
+          980
+        ]
+      },
+      "slots": {
+        "achi-main": {
+          "x": 45,
+          "y": 600,
+          "w": 385,
+          "max_h": 245
+        },
+        "achi-small": {
+          "x": 55,
+          "y": 690,
+          "w": 345,
+          "max_h": 185
+        },
+        "zhoushu-main": {
+          "x": 470,
+          "y": 500,
+          "w": 545,
+          "max_h": 300
+        },
+        "zhoushu-small": {
+          "x": 625,
+          "y": 630,
+          "w": 370,
+          "max_h": 190
+        },
+        "caption": {
+          "x": 300,
+          "y": 100,
+          "w": 480,
+          "max_h": 118
+        }
+      }
     },
     "together": {
-      "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot after the conversation, both facing slightly forward, no broad smile, only a small sense of relief, hands outside the crop, large calm negative space"
+      "characters": [
+        "achi",
+        "zhoushu"
+      ],
+      "direction": "full 3:4 page, both characters in the lower half after the conversation; Achi at lower left, Uncle Zhou at lower right, a small sense of relief but no broad smile; hands outside the crop; leave upper and side space for two short balloons plus a small caption sticker",
+      "mouths": {
+        "阿迟": [
+          493,
+          982
+        ],
+        "周叔": [
+          930,
+          1010
+        ]
+      },
+      "slots": {
+        "achi-main": {
+          "x": 45,
+          "y": 575,
+          "w": 430,
+          "max_h": 240
+        },
+        "achi-small": {
+          "x": 55,
+          "y": 690,
+          "w": 335,
+          "max_h": 180
+        },
+        "zhoushu-main": {
+          "x": 540,
+          "y": 605,
+          "w": 465,
+          "max_h": 235
+        },
+        "zhoushu-small": {
+          "x": 660,
+          "y": 690,
+          "w": 330,
+          "max_h": 175
+        },
+        "caption": {
+          "x": 255,
+          "y": 120,
+          "w": 570,
+          "max_h": 130
+        }
+      }
     }
   }
 }
