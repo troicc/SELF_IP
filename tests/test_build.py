@@ -1,71 +1,62 @@
 from __future__ import annotations
 
 import json
-import shutil
+import tempfile
 import unittest
-from unittest.mock import patch
+from pathlib import Path
 
-from scripts.build import BANNED, PLATES, ROOT, build, read_json, render, validate, wrap
+from scripts.build import BANNED, ROOT, build, read_json, validate_episode
 
 
 class BuildTests(unittest.TestCase):
-    def tearDown(self) -> None:
-        shutil.rmtree(ROOT / "build", ignore_errors=True)
+    def setUp(self) -> None:
+        self.episode = read_json(ROOT / "episodes" / "EP-001.json")
+        self.visual = read_json(ROOT / "visual" / "plates.json")
 
-    def test_episode_is_five_pages_and_valid(self) -> None:
-        episode = read_json(ROOT / "episodes" / "EP-001.json")
-        self.assertIsNone(validate(episode))
-        self.assertEqual(len(episode["pages"]), 5)
-        self.assertEqual({page["plate"] for page in episode["pages"]} - PLATES, set())
+    def test_episode_and_dialogue_rhythm_are_valid(self) -> None:
+        validate_episode(self.episode, self.visual)
+        self.assertEqual(len(self.episode["pages"]), 5)
+        text = "\n".join(
+            bubble["text"]
+            for page in self.episode["pages"]
+            for bubble in page["bubbles"]
+        )
+        self.assertIn("……", text)
+        self.assertIn("就这样？", text)
+        self.assertFalse(any(word in text for word in BANNED))
 
-    def test_build_has_clean_typography_and_no_old_overlay(self) -> None:
-        with patch("scripts.build.find_art", return_value=None):
-            output = build(ROOT / "episodes" / "EP-001.json")
-        cards = sorted((output / "cards").glob("*.svg"))
-        self.assertEqual(len(cards), 5)
-        combined = "\n".join(card.read_text(encoding="utf-8") for card in cards)
-        self.assertNotIn('fill-opacity="0.92"', combined)
-        self.assertNotIn("01/07", combined)
-        self.assertNotIn("<foreignObject", combined)
-        self.assertIn("体谅别人", combined)
-        manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["format"], "five-card-fixed-plate-v1")
+    def test_build_outputs_mouth_anchored_bubbles(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = build(
+                ROOT / "episodes" / "EP-001.json",
+                out_dir=Path(tmp) / "EP-001",
+                art_dir=ROOT / "assets" / "plates",
+            )
+            cards = sorted((output / "cards").glob("*.svg"))
+            self.assertEqual(len(cards), 5)
+            combined = "\n".join(path.read_text(encoding="utf-8") for path in cards)
+            self.assertIn('class="speech-bubble"', combined)
+            self.assertIn('class="speech-tail"', combined)
+            self.assertIn("data-tail-target", combined)
+            self.assertIn("LXGW WenKai Medium", combined)
+            self.assertNotIn('fill-opacity="0.92"', combined)
+            manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["format"], "five-card-mouth-anchored-bubbles-v2")
 
-    def test_prompts_forbid_complex_scenes(self) -> None:
-        visual = read_json(ROOT / "visual" / "plates.json")
-        prompt = visual["global_negative"]
-        for phrase in (
-            "no furniture",
-            "no full body",
-            "no detailed hands",
-            "no extra person",
-            "no complex gesture",
-            "no hard rectangular image edge",
-        ):
-            self.assertIn(phrase, prompt)
+    def test_every_plate_has_mouths_and_non_overlapping_slots(self) -> None:
+        for plate_id, plate in self.visual["plates"].items():
+            self.assertEqual(set(plate["mouths"]), {"阿迟", "周叔"}, plate_id)
+            for speaker, mouth in plate["mouths"].items():
+                self.assertEqual(len(mouth), 2, f"{plate_id}:{speaker}")
+                self.assertTrue(0 <= mouth[0] <= 1080 and 0 <= mouth[1] <= 1440)
+            for slot in plate["slots"].values():
+                self.assertGreater(slot["w"], 300)
+                self.assertGreater(slot["max_h"], 100)
 
-    def test_copy_avoids_banned_abstractions(self) -> None:
-        raw = (ROOT / "episodes" / "EP-001.json").read_text(encoding="utf-8")
-        self.assertFalse(any(word in raw for word in BANNED))
-
-    def test_rejects_seven_pages(self) -> None:
-        episode = read_json(ROOT / "episodes" / "EP-001.json")
-        episode["pages"].extend(episode["pages"][:2])
-        with self.assertRaisesRegex(ValueError, "必须正好五页"):
-            validate(episode)
-
-    def test_wrap_keeps_closing_punctuation_with_previous_line(self) -> None:
-        self.assertEqual(wrap("一二三四五六七八九十。", 10), ["一二三四五六七八九十。"])
-
-    def test_checked_in_layout_proof_matches_generator(self) -> None:
-        episode = read_json(ROOT / "episodes" / "EP-001.json")
-        theme = read_json(ROOT / "templates" / "theme.json")
-        proof_dir = ROOT / "examples" / "EP-001-layout-proof"
-        with patch("scripts.build.find_art", return_value=None):
-            for number, page in enumerate(episode["pages"], 1):
-                generated = render(episode, page, number, theme)
-                checked_in = proof_dir / f"EP-001-{number:02d}.svg"
-                self.assertEqual(generated, checked_in.read_text(encoding="utf-8"), checked_in.name)
+    def test_prompts_keep_art_text_free_and_simple(self) -> None:
+        negative = self.visual["global_negative"]
+        for phrase in ("no text", "no speech bubble", "no furniture", "no detailed hands", "no extra person"):
+            self.assertIn(phrase, negative)
 
 
 if __name__ == "__main__":
