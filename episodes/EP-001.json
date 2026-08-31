@@ -1,0 +1,44 @@
+{
+  "episode_id": "EP-001",
+  "title": "面都坨了，还要回‘没事’吗？",
+  "source": "原创虚构",
+  "pages": [
+    {
+      "kind": "cover",
+      "plate": "quiet",
+      "text": "面都坨了，\n还要回‘没事’吗？"
+    },
+    {
+      "kind": "dialogue",
+      "plate": "achi-talk",
+      "lines": [
+        {"speaker": "阿迟", "text": "我坐下二十分钟，他才说来不了。"},
+        {"speaker": "阿迟", "text": "我打了很多字，最后只剩一句：没事。"}
+      ]
+    },
+    {
+      "kind": "dialogue",
+      "plate": "zhoushu-talk",
+      "lines": [
+        {"speaker": "周叔", "text": "你真没事，就不会一直没动筷子。"},
+        {"speaker": "阿迟", "text": "可我一开口，好像显得很计较。"}
+      ]
+    },
+    {
+      "kind": "action",
+      "plate": "zhoushu-talk",
+      "lines": [
+        {"speaker": "周叔", "text": "别问友情真假，只把这件事说具体。"},
+        {"speaker": "阿迟", "text": "下次有变，能在我出门前告诉我吗？"}
+      ]
+    },
+    {
+      "kind": "landing",
+      "plate": "together",
+      "story": "那晚，阿迟没有删掉这个朋友。\n也没有再把自己的感受删成‘没事’。",
+      "takeaway": "体谅别人，\n不必先省掉自己。",
+      "question": "你最近哪句‘没事’，其实很有事？"
+    }
+  ],
+  "caption": "有时候我们回‘没事’，不是因为真的不介意，而是怕一开口就像在责怪谁。阿迟这次没有追问‘你到底在不在乎我’，只把一个具体请求发了出去：下次有变，能不能在我出门前告诉我。体谅别人，不必先省掉自己。\n\n本故事为原创虚构。"
+}
