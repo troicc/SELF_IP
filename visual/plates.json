@@ -1,20 +1,20 @@
 {
   "canvas": "4:3",
-  "background": "warm near-white paper #F8F2E8",
-  "style": "minimal emotional hand-drawn storybook portrait, loose indigo pencil-and-ink lines, a very light transparent watercolor wash, visible imperfect paper texture, restrained denim blue and mustard yellow, one small coral-orange identity accent, quiet adult emotion, elegant rather than cute",
+  "background": "warm near-white paper matching #F8F2E8, seamless with the card background and without any visible rectangular border",
+  "style": "quiet Scandinavian hand-painted storybook portrait, loose indigo pencil-and-ink linework, restrained matte gouache wash, subtle paper tooth, imperfect human line quality, adult emotional restraint, denim blue and mustard yellow with one small coral-orange identity accent, intimate and elegant rather than cute",
   "identity": {
-    "achi": "Achi, 27-year-old slim Chinese man, narrow oval face, short slightly messy deep-navy hair, faded denim-blue overshirt over a warm cream T-shirt, one coral-orange shoulder strap",
-    "zhoushu": "Uncle Zhou, 56-year-old Chinese man, broad gentle face, short silver-grey hair with a receding hairline, mustard knitted vest over a warm cream shirt"
+    "achi": "Achi, a slim 27-year-old Chinese man with a narrow oval face, short slightly messy deep-navy hair, faded denim-blue overshirt over a warm cream T-shirt, one coral-orange shoulder strap",
+    "zhoushu": "Uncle Zhou, a 56-year-old Chinese man with a broad gentle face, short silver-grey hair and a receding hairline, mustard knitted vest over a warm cream shirt"
   },
-  "global_negative": "no text, no letters, no speech bubble, no phone screen, no furniture, no table, no chair, no room, no street, no full body, no legs, no detailed hands, no complex gesture, no extra person, no crowd, no decorative background, no 3D, no glossy digital painting, no anime eyes",
+  "global_negative": "no text, no letters, no speech bubble, no phone screen, no furniture, no table, no chair, no room, no street, no full body, no legs, no detailed hands, no complex gesture, no extra person, no crowd, no decorative background, no hard rectangular image edge, no mismatched paper patch, no 3D, no glossy digital painting, no anime eyes, no chibi proportions",
   "plates": {
     "quiet": {
       "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot, Achi on the left looking slightly down, Uncle Zhou on the right turned toward him and listening, both hands outside the crop, calm empty background"
+      "direction": "waist-up two-shot, Achi on the left looking slightly down, Uncle Zhou on the right turned toward him and listening, both hands outside the crop, calm negative space"
     },
     "achi-talk": {
       "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot, Achi is the clear focus and has just started speaking, his expression restrained and a little embarrassed; Uncle Zhou appears only as a quiet shoulder-and-face listener, hands outside the crop"
+      "direction": "waist-up two-shot, Achi is the clear focus and has just started speaking, restrained and a little embarrassed; Uncle Zhou appears only as a quiet listener, hands outside the crop"
     },
     "zhoushu-talk": {
       "characters": ["achi", "zhoushu"],
@@ -22,7 +22,7 @@
     },
     "together": {
       "characters": ["achi", "zhoushu"],
-      "direction": "waist-up two-shot with both characters facing slightly forward after the conversation, not smiling broadly, a small sense of relief, hands outside the crop, large calm negative space"
+      "direction": "waist-up two-shot after the conversation, both facing slightly forward, no broad smile, only a small sense of relief, hands outside the crop, large calm negative space"
     }
   }
 }
