@@ -1,13 +1,39 @@
 {
-  "canvas": {"width": 1080, "height": 1440},
-  "colors": {
-    "paper": "#F8F2E8",
-    "ink": "#1E3550",
-    "muted": "#77736D",
-    "achi": "#35678F",
-    "zhoushu": "#B66A3C",
-    "accent": "#D56E42",
-    "proof": "#D8D0C5"
+  "canvas": {
+    "width": 1080,
+    "height": 1440
   },
-  "font_family": "'PingFang SC','Hiragino Sans GB','Noto Sans CJK SC','Source Han Sans SC','Microsoft YaHei',sans-serif"
+  "font": {
+    "family": "'LXGW WenKai Medium','LXGW WenKai','霞鹜文楷','AR PL KaitiM GB','KaiTi','STKaiti',cursive",
+    "display_weight": 700,
+    "body_weight": 600,
+    "label_weight": 600,
+    "synthetic_stroke": 0.52
+  },
+  "colors": {
+    "paper": "#FFF9EB",
+    "ink": "#30445B",
+    "muted": "#7F796F",
+    "coral": "#F07B61",
+    "sky": "#CDEAF0",
+    "sky_line": "#4D8291",
+    "butter": "#FFF0AF",
+    "butter_line": "#B97A35",
+    "mint": "#D9EEDB",
+    "mint_line": "#5D8D70",
+    "lavender": "#E9DDF2",
+    "lavender_line": "#7A668A",
+    "cream": "#FFFDF6",
+    "proof": "#D8CFC0"
+  },
+  "type": {
+    "brand_size": 24,
+    "bubble_size": 44,
+    "bubble_small_size": 37,
+    "cover_size": 53,
+    "caption_size": 28,
+    "note_size": 34,
+    "question_size": 27,
+    "line_height": 1.27
+  }
 }

@@ -6,39 +6,84 @@
     {
       "kind": "cover",
       "plate": "quiet",
-      "text": "面都坨了，\n还要回‘没事’吗？"
+      "bubbles": [
+        {
+          "speaker": "阿迟",
+          "slot": "cover-main",
+          "text": "面都坨了。\n我还要回‘没事’吗？",
+          "emphasis": true
+        }
+      ],
+      "kicker": "一个没说出口的小请求"
     },
     {
       "kind": "dialogue",
       "plate": "achi-talk",
-      "lines": [
-        {"speaker": "阿迟", "text": "我坐下二十分钟，他才说来不了。"},
-        {"speaker": "阿迟", "text": "我打了很多字，最后只剩一句：没事。"}
+      "bubbles": [
+        {
+          "speaker": "阿迟",
+          "slot": "achi-main",
+          "text": "我不是非要他来。\n就是……别总等我出门了才说。"
+        },
+        {
+          "speaker": "周叔",
+          "slot": "zhoushu-small",
+          "text": "你回他什么？"
+        }
       ]
     },
     {
       "kind": "dialogue",
       "plate": "zhoushu-talk",
-      "lines": [
-        {"speaker": "周叔", "text": "你气的，不是他来不了。"},
-        {"speaker": "阿迟", "text": "是我又成了最后一个知道的人。"}
+      "bubbles": [
+        {
+          "speaker": "阿迟",
+          "slot": "achi-small",
+          "text": "还是‘没事’。\n不然呢？"
+        },
+        {
+          "speaker": "周叔",
+          "slot": "zhoushu-main",
+          "text": "你筷子都没拆。\n哪儿没事。"
+        }
       ]
     },
     {
       "kind": "action",
       "plate": "zhoushu-talk",
-      "lines": [
-        {"speaker": "周叔", "text": "那就别问友情真假，只说这件事。"},
-        {"speaker": "阿迟", "text": "下次有变，能在我出门前告诉我吗？"}
+      "bubbles": [
+        {
+          "speaker": "周叔",
+          "slot": "zhoushu-main",
+          "text": "先别问你们还算不算朋友。\n就说这回。"
+        },
+        {
+          "speaker": "阿迟",
+          "slot": "achi-main",
+          "text": "下次有变，能不能在我出门前跟我说一声？",
+          "emphasis": true
+        }
       ]
     },
     {
       "kind": "landing",
       "plate": "together",
-      "story": "十分钟后，对方回：对不起，下次我早点说。\n关系没有一下变好，但这句话终于被听见了。",
-      "takeaway": "体谅别人，\n不必先省掉自己。",
+      "caption": "十分钟后，他回：对不起。下次我早点说。",
+      "bubbles": [
+        {
+          "speaker": "阿迟",
+          "slot": "achi-small",
+          "text": "就这样？"
+        },
+        {
+          "speaker": "周叔",
+          "slot": "zhoushu-main",
+          "text": "嗯。先吃面。\n别的，看以后。"
+        }
+      ],
+      "note": "那句‘没事’，这次没发出去。",
       "question": "你最近哪句‘没事’，其实很有事？"
     }
   ],
-  "caption": "有时候我们回‘没事’，不是因为真的不介意，而是怕一开口就像在责怪谁。阿迟这次没有追问‘你到底在不在乎我’，只把一个具体请求发了出去：下次有变，能不能在我出门前告诉我。关系没有一下变好，但这句话终于被听见了。体谅别人，不必先省掉自己。\n\n本故事为原创虚构。"
+  "caption": "“没事”打出来又删掉的时候，阿迟也说不清自己在怕什么。怕显得计较，还是怕问完以后，连朋友都做不成。\n\n周叔没劝他大度，也没替那个人找理由，只说：先别一次问完十年的友情。就说这回。\n\n于是阿迟发了一句：下次有变，能不能在我出门前跟我说一声？\n\n对方过了十分钟回：对不起。下次我早点说。\n\n事情当然没这么快解决，面也还是坨了。但那句“没事”，这次没发出去。\n\n本故事为原创虚构。"
 }
