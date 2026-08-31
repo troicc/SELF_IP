@@ -245,8 +245,8 @@ def progress_dots(page_number: int, theme: dict[str, Any]) -> str:
     for index in range(1, 6):
         dots.append(
             f'<circle cx="{486 + (index - 1) * 27}" cy="1370" '
-            f'r="{7 if index == page_nuber else 4}" '
-            f'fill="{colors["accent"] if index == page_nuber else colors["proof"]}"/>'
+            f'r="{7 if index == page_number else 4}" '
+            f'fill="{colors["accent"] if index == page_number else colors["proof"]}"/>'
         )
     return "\n".join(dots)
 
@@ -262,7 +262,7 @@ def render_card(
     font = theme["font_family"]
     output = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1080\" height=\"1440\" viewBox=\"0 0 1080 1440\">",
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">',
         f'<rect width="1080" height="1440" fill="{colors["paper"]}"/>',
         svg_text(
             ["坐一会儿再走"],
@@ -272,7 +272,7 @@ def render_card(
             color=colors["muted"],
             font_family=font,
             weight=500,
-         ),
+        ),
         f'<line x1="76" y1="94" x2="154" y2="94" stroke="{colors["accent"]}" '
         'stroke-width="5" stroke-linecap="round"/>',
     ]
@@ -295,7 +295,7 @@ def render_card(
                     theme, image, page["plate"], x=54, y=410, width=972, height=780
                 ),
                 svg_text(
-                  ["阿迟 × 周叔"],
+                    ["阿迟 × 周叔"],
                     x=76,
                     y=1280,
                     size=27,
@@ -310,7 +310,7 @@ def render_card(
         output.append(
             art_fragment(theme, image, page["plate"], x=70, y=115, width=940, height=690)
         )
-       y = 880
+        y = 880
         for item in page["lines"]:
             speaker = item["speaker"]
             speaker_color = {
@@ -401,7 +401,7 @@ def render_card(
                 weight=500,
                 leading=1.32,
             )
-       )
+        )
         output.append(
             svg_text(
                 [episode.get("source", "")],
@@ -411,7 +411,7 @@ def render_card(
                 color=colors["muted"],
                 font_family=font,
                 anchor="end",
-           )
+            )
         )
 
     output.extend([progress_dots(page_number, theme), "</svg>"])
